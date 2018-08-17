@@ -1,3 +1,17 @@
 .home {
-  color: red;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+  .aside-menu {
+    height: 100%;
+    width: 20%;
+    border-right: 1px solid black;
+  }
+
+  .main-grid {
+    height: 100%;
+    width: 80%;
+    text-align: center;
+  }
 }
