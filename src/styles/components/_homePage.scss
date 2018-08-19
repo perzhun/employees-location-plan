@@ -5,13 +5,56 @@
 
   .aside-menu {
     height: 100%;
-    width: 20%;
+    width: 50%;
     border-right: 1px solid black;
+    background: #333238;
+    text-align: center;
+    z-index: 1;
+    overflow-x: hidden;
+    -webkit-transition: width 0.5s;
+    transition: width 0.5s;
+
+    @media (min-width: 1024px) {
+      width: 25%;
+    }
   }
+
+  .aside-menu--untoggled {
+    /*display: none;*/
+    @extend .aside-menu;
+    border: none;
+    width: 0%;
+
+  }
+
 
   .main-grid {
     height: 100%;
-    width: 80%;
+    width: 50%;
     text-align: center;
+
+    @media (min-width: 1024px) {
+      width: 75%;
+    }
   }
+
+  .main-grid--untoggled {
+    @extend .main-grid;
+    width: 100%;
+  }
+
+  .home__menu-button--hidden {
+    display : none;
+  }
+
+  .home__menu-button--active {
+    display : inline-block;
+    background: #333238;
+    color: white;
+    padding: 0.2em;
+    border-radius: 5px;
+    margin-top: 1em;
+  }
+  
 }
+

@@ -28,6 +28,7 @@
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.3",
     "prettier": "^1.14.2",
+    "prop-types": "^15.6.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.22.1",
     "webpack": "^4.16.5",
@@ -36,6 +37,9 @@
   "dependencies": {
     "@material-ui/core": "^1.5.0",
     "@material-ui/icons": "^2.0.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "webpack-dev-server": "^3.1.5"
