@@ -1,0 +1,34 @@
+.main-grid {
+    height: 100%;
+    width: 50%;
+
+    @media (min-width: 1024px) {
+      width: 80%;
+    }  
+}
+
+.main-grid--untoggled {
+    @extend .main-grid;
+    width: 100%;
+}
+
+.home__menu-button--active {
+    display: inline-block;
+    visibility: visible;
+    background: #333238;
+    color: white;
+    padding: 0.2em;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.home__menu-button--hidden {
+    @extend .home__menu-button--active;
+    visibility: hidden;
+}
+
+
+
+.main-grid__title {
+    text-align: center;
+}

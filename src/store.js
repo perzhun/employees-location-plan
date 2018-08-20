@@ -1,13 +1,15 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers/menuReducer';
-
-const initialState = {};
+import menuReducer from './reducers/menuReducer';
 
 const middleware = [thunk];
 
-const store = createStore(
-  (rootReducer, initialState, applyMiddleware(...middleware)),
-);
+export default () => {
+  const store = createStore(
+    combineReducers({
+      menu: menuReducer,
+    }),
+  );
 
-export default store;
+  return store;
+};

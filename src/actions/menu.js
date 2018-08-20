@@ -1,9 +1,9 @@
-export const MENU_TOGGLE = () => ({
+export const menuToggle = () => ({
   type: 'MENU_TOGGLE',
   toggle: true,
 });
 
-export const MENU_UNTOGGLE = () => ({
+export const menuUntoggle = () => ({
   type: 'MENU_UNTOGGLE',
   toggle: false,
 });
