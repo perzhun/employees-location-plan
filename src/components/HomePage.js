@@ -17,10 +17,7 @@ export default class HomePage extends Component {
     return (
       <React.Fragment>
         <main className="home">
-          <AsideMenu
-            menuClicked={this.state.toggle}
-            onMenuClose={this.onMenuClose}
-          />
+          <AsideMenu onMenuClose={this.onMenuClose} />
           <Menu
             className={
               this.state.toggle

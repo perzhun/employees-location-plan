@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Close from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
+import { MENU_UNTOGGLE } from '../actions/menu';
 
 class AsideMenu extends Component {
   /*
@@ -15,13 +17,14 @@ class AsideMenu extends Component {
   render() {
     return (
       <aside
-        className={
-          this.props.menuClicked ? 'aside-menu' : 'aside-menu--untoggled'
-        }
+        className={this.props.toggle ? 'aside-menu' : 'aside-menu--untoggled'}
       >
         <div className="aside-menu__header">
           <span>Search for an employee!</span>
-          <Close onClick={this.unToggleMenu} className="aside-menu__close" />
+          <Close
+            onClick={this.props.MENU_UNTOGGLE}
+            className="aside-menu__close"
+          />
         </div>
         <textarea placeholder="Search" className="aside-menu__search" />
       </aside>
@@ -30,8 +33,14 @@ class AsideMenu extends Component {
 }
 
 AsideMenu.propTypes = {
-  onMenuClose: PropTypes.func,
-  menuClicked: PropTypes.bool,
+  MENU_UNTOGGLE: PropTypes.func,
+  toggle: PropTypes.bool,
 };
 
-export default AsideMenu;
+const mapStateToProps = state => {
+  return {
+    toggle: state.toggle,
+  };
+};
+
+export default connect(mapStateToProps)(AsideMenu);
