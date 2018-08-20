@@ -1,5 +1,3 @@
-//import { menuToggle , menuUntoggle } from '../actions/menu';
-
 const menuInitialState = {
   toggle: true,
 };

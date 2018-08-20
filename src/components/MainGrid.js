@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Menu from '@material-ui/icons/Menu';
+import Button from '@material-ui/core/Button';
 import { menuToggle } from '../actions/menu';
+import { firstFloorRender, secondFloorRender } from '../actions/mainGridRender';
+import FirstFloor from './FirstFloor';
+import SecondFloor from './SecondFloor';
 
-//class MainGrid extends Component {
 const MainGrid = props => (
-  /*render() {
-    return (*/
   <section className={props.menu.toggle ? 'main-grid' : 'main-grid--untoggled'}>
     <h1 className="main-grid__title">Exadel</h1>
     <Menu
@@ -20,6 +21,29 @@ const MainGrid = props => (
         props.dispatch(menuToggle());
       }}
     />
+    <div className="main-grid-buttons">
+      <Button
+        variant="contained"
+        color="secondary"
+        className="main-grid__primary"
+        onClick={() => {
+          props.dispatch(firstFloorRender());
+        }}
+      >
+        First Floor
+      </Button>
+      <Button
+        variant="contained"
+        color="secondary"
+        className="main-grid__primary"
+        onClick={() => {
+          props.dispatch(secondFloorRender());
+        }}
+      >
+        Second Floor
+      </Button>
+    </div>
+    {props.render.render === 'first floor' ? <FirstFloor /> : <SecondFloor />}
   </section>
 );
 // }
@@ -29,12 +53,14 @@ MainGrid.propTypes = {
   toggle: PropTypes.bool,
   dispatch: PropTypes.func,
   menu: PropTypes.object,
+  render: PropTypes.object,
   menuToggle: PropTypes.func,
 };
 
 const mapStateToProps = state => {
   return {
     menu: state.menu,
+    render: state.render,
   };
 };
 

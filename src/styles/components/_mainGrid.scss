@@ -2,6 +2,24 @@
     height: 100%;
     width: 50%;
 
+    .main-grid-buttons {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        .main-grid__primary {
+            margin-left: 0.5em;
+        }
+    }
+
+    .main-grid-grid {
+        text-align: center;
+        padding: 5% 10%;
+        height: 60%;
+    }
+
     @media (min-width: 1024px) {
       width: 80%;
     }  
