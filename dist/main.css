@@ -1,4 +1,18 @@
 .home {
-  color: red; }
+  height: 100vh;
+  display: flex;
+  flex-direction: row; }
+  .home .aside-menu {
+    height: 100%;
+    width: 20%;
+    border-right: 1px solid black; }
+  .home .main-grid {
+    height: 100%;
+    width: 80%;
+    text-align: center; }
+
+body {
+  margin: 0;
+  padding: 0; }
 
 /*# sourceMappingURL=main.css.map*/
