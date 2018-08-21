@@ -13,6 +13,16 @@ export default (state = firstFloorInitialState, action) => {
         ...state,
         room: action.room,
       };
+    case 'WORK_ROOM_ONE':
+      return {
+        ...state,
+        room: action.room,
+      };
+    case 'FIRST_FLOOR_LOBBY':
+      return {
+        ...state,
+        room: action.room,
+      };
     case 'FIRST_FLOOR':
       return {
         ...state,

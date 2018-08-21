@@ -1,0 +1,16 @@
+@mixin unclickableRooms {
+  background: repeating-linear-gradient(
+    45deg,
+    #4f4f4f,
+    #646464 10px,
+    #939393 10px,
+    #252525 20px
+  );
+}
+@mixin clickableRooms {
+  background: #939393;
+  &:hover {
+    border-color: red;
+    cursor: pointer;
+  }
+}

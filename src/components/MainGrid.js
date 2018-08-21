@@ -53,7 +53,7 @@ const MainGrid = props => (
     </div>
     <ReactCSSTransitionGroup
       transitionName="fade"
-      transitionEnterTimeout={2000}
+      transitionEnterTimeout={800}
       transitionLeave={false}
     >
       {props.render.render === 'first floor' ? (
