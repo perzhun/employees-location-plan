@@ -9,6 +9,13 @@ import { firstFloorRender, secondFloorRender } from '../actions/mainGridRender';
 import FirstFloor from './FirstFloor';
 import SecondFloor from './SecondFloor';
 
+/*
+The main grid where the office map will render.
+the component that will render depends on the render state in the store , if the state is 'first floor' the FirstFloor component will render etc...
+the  component is connected to the store to get the render state and dispatch actions to change it 
+the buttons dispatch actinos to change the render state accordingly 
+*/
+
 const MainGrid = props => (
   <section className={props.menu.toggle ? 'main-grid' : 'main-grid--untoggled'}>
     <h1 className="main-grid__title">Exadel</h1>

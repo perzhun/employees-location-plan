@@ -1,3 +1,7 @@
+/*
+main grid reducer , returns changes to the render state based on the case type
+*/
+
 const mainGridInitialState = {
   render: 'first floor',
 };

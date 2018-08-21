@@ -4,6 +4,10 @@ import Close from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
 import { menuUntoggle } from '../actions/menu';
 
+// toggable aside menu that contains a search function and a close button
+// the components is connected to the store to get the state of the toggle , it will then toggle accordingly
+// the close button dispatches an action to change the state to untoggled
+
 const AsideMenu = props => (
   <aside className={props.menu.toggle ? 'aside-menu' : 'aside-menu--untoggled'}>
     <div className="aside-menu__header">
