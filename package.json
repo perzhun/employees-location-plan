@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack-dev-server --mode development --open --hot",
     "build:prod": "webpack --mode production",
+    "start": "node server.js",
     "heroku-postbuild": "webpack --mode production"
   },
   "author": "hachem el jedaaoui",
