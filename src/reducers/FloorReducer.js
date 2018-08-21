@@ -2,28 +2,23 @@
 first floor reducer , returns changes to the room state based on the case type
 */
 
-const firstFloorInitialState = {
+const FloorInitialState = {
   room: 'first floor',
 };
 
-export default (state = firstFloorInitialState, action) => {
+export default (state = FloorInitialState, action) => {
   switch (action.type) {
-    case 'WORK_ROOM_TWO':
+    case 'RENDER_ROOM':
       return {
         ...state,
-        room: action.room,
-      };
-    case 'WORK_ROOM_ONE':
-      return {
-        ...state,
-        room: action.room,
-      };
-    case 'FIRST_FLOOR_LOBBY':
-      return {
-        ...state,
-        room: action.room,
+        room: action.payload,
       };
     case 'FIRST_FLOOR':
+      return {
+        ...state,
+        room: action.room,
+      };
+    case 'SECOND_FLOOR':
       return {
         ...state,
         room: action.room,

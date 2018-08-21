@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
+/*import {
   secondCabinetOneRender,
   secondCabinetTwoRender,
   secondWorkRoomRender,
@@ -10,7 +10,8 @@ import {
   secondWorkRoomThreeRender,
   secondWorkRoomFourRender,
   secondCabinetThreeRender,
-} from '../actions/secondFloorRender';
+} from '../actions/secondFloorRender'; */
+import { RenderRoom } from '../actions/FloorRoomRender';
 import SecondCabinetOne from './secondFloorRoom/SecondCabinetOne';
 import SecondCabinetThree from './secondFloorRoom/SecondCabinetThree';
 import SecondCabinetTwo from './secondFloorRoom/SecondCabinetTwo';
@@ -28,7 +29,7 @@ import SecondWorkRoomFour from './secondFloorRoom/SecondWorkRoomFour';
 const SecondFloor = props => (
   <div className="main-grid-grid">
     {(() => {
-      switch (props.secondRoom.secondRoom) {
+      switch (props.room) {
         case 'second room':
           return <SecondWorkRoom />;
         case 'second room one':
@@ -51,65 +52,51 @@ const SecondFloor = props => (
               <div className="f2-room second-floor__stairs">stairs</div>
               <div
                 className="f2-room second-floor__cabinet1"
-                onClick={() => {
-                  props.dispatch(secondCabinetOneRender());
-                }}
+                onClick={() => props.dispatch(RenderRoom('second cabinet one'))}
               >
                 cabinet 1
               </div>
               <div
                 className="f2-room second-floor__cabinet2"
-                onClick={() => {
-                  props.dispatch(secondCabinetTwoRender());
-                }}
+                onClick={() => props.dispatch(RenderRoom('second cabinet two'))}
               >
                 cabinet 2
               </div>
               <div
                 className="f2-room second-floor__work-room"
-                onClick={() => {
-                  props.dispatch(secondWorkRoomRender());
-                }}
+                onClick={() => props.dispatch(RenderRoom('second room'))}
               >
                 work room
               </div>
               <div
                 className="f2-room second-floor__work-room1"
-                onClick={() => {
-                  props.dispatch(secondWorkRoomOneRender());
-                }}
+                onClick={() => props.dispatch(RenderRoom('second room one'))}
               >
                 work room
               </div>
               <div
                 className="f2-room second-floor__work-room2"
-                onClick={() => {
-                  props.dispatch(secondWorkRoomTwoRender());
-                }}
+                onClick={() => props.dispatch(RenderRoom('second room two'))}
               >
                 work room
               </div>
               <div
                 className="f2-room second-floor__work-room3"
-                onClick={() => {
-                  props.dispatch(secondWorkRoomThreeRender());
-                }}
+                onClick={() => props.dispatch(RenderRoom('second room three'))}
               >
                 work room
               </div>
               <div
                 className="f2-room second-floor__work-room4"
-                onClick={() => {
-                  props.dispatch(secondWorkRoomFourRender());
-                }}
+                onClick={() => props.dispatch(RenderRoom('second room four'))}
               >
                 work room{' '}
               </div>
               <div
                 className="f2-room second-floor__cabinet3"
-                onClick={() => {
-                  props.dispatch(secondCabinetThreeRender());
-                }}
+                onClick={() =>
+                  props.dispatch(RenderRoom('second cabinet three'))
+                }
               >
                 cabinet 3{' '}
               </div>
@@ -123,13 +110,13 @@ const SecondFloor = props => (
 );
 
 SecondFloor.propTypes = {
-  secondRoom: PropTypes.object,
+  room: PropTypes.object,
   dispatch: PropTypes.func,
 };
 
 const mapStateToProps = state => {
   return {
-    secondRoom: state.secondRoom,
+    room: state.room.room,
   };
 };
 

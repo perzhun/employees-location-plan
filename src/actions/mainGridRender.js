@@ -11,4 +11,5 @@ export const firstFloorRender = () => ({
 export const secondFloorRender = () => ({
   type: 'SECOND_FLOOR',
   render: 'second floor',
+  room: 'second floor',
 });
