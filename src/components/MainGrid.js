@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Menu from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { menuToggle } from '../actions/menu';
 import { firstFloorRender, secondFloorRender } from '../actions/mainGridRender';
 import FirstFloor from './FirstFloor';
@@ -43,7 +44,17 @@ const MainGrid = props => (
         Second Floor
       </Button>
     </div>
-    {props.render.render === 'first floor' ? <FirstFloor /> : <SecondFloor />}
+    <ReactCSSTransitionGroup
+      transitionName="fade"
+      transitionEnterTimeout={2000}
+      transitionLeave={false}
+    >
+      {props.render.render === 'first floor' ? (
+        <FirstFloor key="first" />
+      ) : (
+        <SecondFloor key="second" />
+      )}
+    </ReactCSSTransitionGroup>
   </section>
 );
 // }
