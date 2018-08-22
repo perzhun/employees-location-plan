@@ -8,7 +8,7 @@ var extractPlugin = new extractTextPlugin({
 });
 
 module.exports = {
-  entry: ['babel-polyfill', './src/app.js'],
+  entry: ['babel-polyfill', './src/App.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
