@@ -15,33 +15,6 @@ the component that will render depends on the render state in the store , if the
 the  component is connected to the store to get the render state and dispatch actions to change it 
 the buttons dispatch actinos to change the render state accordingly 
 */
-const dummyData = [
-  {
-    name: 'hachem',
-    floor: 'first',
-    room: 'first',
-  },
-  {
-    name: 'alex',
-    floor: 'first',
-    room: 'first',
-  },
-  {
-    name: 'sergey',
-    floor: 'first',
-    room: 'first',
-  },
-  {
-    name: 'andrei',
-    floor: 'first',
-    room: 'first',
-  },
-  {
-    name: 'katerina',
-    floor: 'first',
-    room: 'first',
-  },
-];
 
 const MainGrid = props => (
   <section className={props.menu.toggle ? 'main-grid' : 'main-grid--untoggled'}>
@@ -84,7 +57,7 @@ const MainGrid = props => (
       transitionLeave={false}
     >
       {props.render.render === 'first floor' ? (
-        <FirstFloor key="first" dummyData={dummyData} />
+        <FirstFloor key="first" dummyData={props.employees} />
       ) : (
         <SecondFloor key="second" />
       )}
@@ -100,12 +73,14 @@ MainGrid.propTypes = {
   menu: PropTypes.object,
   render: PropTypes.object,
   menuToggle: PropTypes.func,
+  employees: PropTypes.array,
 };
 
 const mapStateToProps = state => {
   return {
     menu: state.menu,
     render: state.render,
+    employees: state.employees.employees,
   };
 };
 

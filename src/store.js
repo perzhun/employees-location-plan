@@ -2,6 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import menuReducer from './reducers/menuReducer';
 import mainGridReducer from './reducers/mainGridReducer';
+import employeeReducer from './reducers/employeeReducer';
 
 const middleware = [thunk];
 
@@ -12,6 +13,7 @@ export default () => {
     combineReducers({
       menu: menuReducer,
       render: mainGridReducer,
+      employees: employeeReducer,
     }),
   );
 
