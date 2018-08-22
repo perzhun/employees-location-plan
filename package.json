@@ -49,6 +49,9 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "lodash.flow": "^3.5.0",
+    "react-dnd": "^5.0.0",
+    "react-dnd-html5-backend": "^5.0.1"
   }
 }

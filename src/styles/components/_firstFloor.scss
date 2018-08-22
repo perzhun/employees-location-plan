@@ -3,58 +3,30 @@
 .first-floor {
   display: grid;
   height: 100%;
-  grid-template-rows: repeat(10, 1fr);
-  grid-template-columns: repeat(8, 1fr);
-  border: 2px double black;
-}
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  /*border: 2px double black;*/
+  background: url("/dist/img/first-floor.png") no-repeat;
+  background-size: 100% 100%;
 
-.room {
-  color: white;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px double black;
-  font-size: 1.2em;
-
-  &.stairs {
-    grid-row: 1 / span 1;
-    grid-column: 1 / span 4;
-    @include unclickableRooms;
-  }
-  &.bathroom {
-    grid-row: 1 / span 1;
-    grid-column: 6 / span 3;
-    @include unclickableRooms;
-  }
-  &.work-room2 {
-    grid-row: 2 / span 6;
-    grid-column: 1 / span 4;
-    @include clickableRooms;
-  }
-  &.meeting-room2 {
-    grid-row: 2 / span 2;
-    grid-column: 6 / span 3;
-    @include unclickableRooms;
-  }
-  &.meeting-room1 {
+  .first-floor__work-room1 {
+    padding: 22% 12%;
     grid-row: 4 / span 3;
-    grid-column: 6 / span 3;
-    @include unclickableRooms;
+    grid-column: 2 / span 1;
+    display: grid;
+    grid-gap: 0.5em;
+    .first-floor__employee {
+      border: 2px double black;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        border-color: red;
+      }
+    }
   }
-  &.lobby {
-    grid-row: 8 / span 2;
-    grid-column: 2 / span 3;
-    @include clickableRooms;
-  }
-  &.locker {
-    grid-row: 7 / span 1;
-    grid-column: 6 / span 3;
-    @include unclickableRooms;
-  }
-  &.work-room1 {
-    grid-row: 8 / span 3;
-    grid-column: 6 / span 3;
-    @include clickableRooms;
+  .first-floor__work-room2 {
+    padding: 5% 17% 5% 10%;
+    grid-row: 1 / span 3;
+    grid-column: 3 / span 4;
   }
 }

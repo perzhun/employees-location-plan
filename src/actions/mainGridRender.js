@@ -2,14 +2,7 @@
 the first room component will render
 */
 
-export const firstFloorRender = () => ({
+export const floorRender = floor => ({
   type: 'FIRST_FLOOR',
-  render: 'first floor',
-  room: 'first floor',
-});
-
-export const secondFloorRender = () => ({
-  type: 'SECOND_FLOOR',
-  render: 'second floor',
-  room: 'second floor',
+  payload: floor,
 });

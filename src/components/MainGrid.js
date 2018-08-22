@@ -5,7 +5,7 @@ import Menu from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { menuToggle } from '../actions/menu';
-import { firstFloorRender, secondFloorRender } from '../actions/mainGridRender';
+import { floorRender } from '../actions/mainGridRender';
 import FirstFloor from './FirstFloor';
 import SecondFloor from './SecondFloor';
 
@@ -15,6 +15,33 @@ the component that will render depends on the render state in the store , if the
 the  component is connected to the store to get the render state and dispatch actions to change it 
 the buttons dispatch actinos to change the render state accordingly 
 */
+const dummyData = [
+  {
+    name: 'hachem',
+    floor: 'first',
+    room: 'first',
+  },
+  {
+    name: 'alex',
+    floor: 'first',
+    room: 'first',
+  },
+  {
+    name: 'sergey',
+    floor: 'first',
+    room: 'first',
+  },
+  {
+    name: 'andrei',
+    floor: 'first',
+    room: 'first',
+  },
+  {
+    name: 'katerina',
+    floor: 'first',
+    room: 'first',
+  },
+];
 
 const MainGrid = props => (
   <section className={props.menu.toggle ? 'main-grid' : 'main-grid--untoggled'}>
@@ -35,7 +62,7 @@ const MainGrid = props => (
         color="secondary"
         className="main-grid__primary"
         onClick={() => {
-          props.dispatch(firstFloorRender());
+          props.dispatch(floorRender('first floor'));
         }}
       >
         First Floor
@@ -45,7 +72,7 @@ const MainGrid = props => (
         color="secondary"
         className="main-grid__primary"
         onClick={() => {
-          props.dispatch(secondFloorRender());
+          props.dispatch(floorRender('second floor'));
         }}
       >
         Second Floor
@@ -57,7 +84,7 @@ const MainGrid = props => (
       transitionLeave={false}
     >
       {props.render.render === 'first floor' ? (
-        <FirstFloor key="first" />
+        <FirstFloor key="first" dummyData={dummyData} />
       ) : (
         <SecondFloor key="second" />
       )}

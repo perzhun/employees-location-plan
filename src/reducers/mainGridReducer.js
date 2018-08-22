@@ -11,7 +11,7 @@ export default (state = mainGridInitialState, action) => {
     case 'FIRST_FLOOR':
       return {
         ...state,
-        render: action.render,
+        render: action.payload,
       };
     case 'SECOND_FLOOR':
       return {
