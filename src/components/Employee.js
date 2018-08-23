@@ -6,11 +6,7 @@ const Employee = props => {
   console.log(props.person.photo);
   return (
     <React.Fragment>
-      <img
-        className="employee_circle"
-        src={require(props.person.photo)}
-        alt="portrait"
-      />
+      <span>{props.person.name}</span>
     </React.Fragment>
   );
 };
@@ -21,3 +17,10 @@ Employee.propTypes = {
 };
 
 export default Employee;
+
+/*
+<img
+        className="employee_circle"
+        src={props.person.photo}
+        alt="portrait"
+      />*/

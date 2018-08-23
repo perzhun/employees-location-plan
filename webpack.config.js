@@ -2,6 +2,7 @@ var path = require('path');
 //var webpack = require('webpack');
 var extractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var extractPlugin = new extractTextPlugin({
   filename: 'main.css',
@@ -57,6 +58,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
+    new CopyWebpackPlugin([{ from: 'src/img', to: 'img' }]),
   ],
   devtool: 'source-map',
 };
