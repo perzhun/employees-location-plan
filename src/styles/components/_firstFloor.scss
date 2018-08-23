@@ -24,14 +24,14 @@
       min-width: 0;
       min-height: 0;
       text-align: center;
-      height: 0;
+      /*height: 0;
       width: 50%;
-      padding-bottom: 50%;
-      
+      padding-bottom: 50%;*/
+
       &:hover {
         border-color: red;
       }
-      .employee_circle{
+      .employee_circle {
         font-size: 0.5em;
       }
     }

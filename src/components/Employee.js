@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 //import { DragSource } from 'react-dnd';
 
 const Employee = props => {
+  console.log(props.person.photo);
   return (
     <React.Fragment>
-      <span className="employee_circle">{props.person.name}</span>
+      <img
+        className="employee_circle"
+        src={require(props.person.photo)}
+        alt="portrait"
+      />
     </React.Fragment>
   );
 };
