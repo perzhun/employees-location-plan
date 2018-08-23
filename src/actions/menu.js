@@ -11,3 +11,8 @@ export const menuUntoggle = () => ({
   type: 'MENU_UNTOGGLE',
   toggle: false,
 });
+
+export const rangeChange = value => ({
+  type: 'RANGE_CHANGE',
+  payload: parseInt(value),
+});
