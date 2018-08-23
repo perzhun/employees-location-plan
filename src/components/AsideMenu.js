@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Close from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
-//import InputRange from 'react-input-range';
-import { menuUntoggle, rangeChange } from '../actions/menu';
+import Button from '@material-ui/core/Button';
+import { menuUntoggle, rangeChange, activateGrid } from '../actions/menu';
 //import '/react-input-range/lib/css/index.css';
 
 // toggable aside menu that contains a search function and a close button
@@ -22,6 +22,16 @@ const AsideMenu = props => (
       />
     </div>
     <textarea placeholder="Search" className="aside-menu__search" />
+    <Button
+      variant="contained"
+      color="primary"
+      //className="main-grid__primary"
+      onClick={() => {
+        props.dispatch(activateGrid('grid-cell'));
+      }}
+    >
+      enable editing
+    </Button>
     <input
       min={2}
       max={20}
@@ -29,6 +39,16 @@ const AsideMenu = props => (
       defaultValue={props.grid}
       onChange={event => props.dispatch(rangeChange(event.target.value))}
     />
+    <Button
+      variant="contained"
+      color="primary"
+      //className="main-grid__primary"
+      onClick={() => {
+        props.dispatch(activateGrid('grid-cell--unactive'));
+      }}
+    >
+      disable editing
+    </Button>
   </aside>
 );
 

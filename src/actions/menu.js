@@ -16,3 +16,8 @@ export const rangeChange = value => ({
   type: 'RANGE_CHANGE',
   payload: parseInt(value),
 });
+
+export const activateGrid = payload => ({
+  type: 'ACTIVE_GRID',
+  payload,
+});

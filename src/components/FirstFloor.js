@@ -23,7 +23,17 @@ const FirstFloor = props => {
   `;
   let divCells = [];
   for (let i = 0; i < props.gridRows * props.gridCollums; i++) {
-    divCells.push(<div className="grid-cell" key={i} />);
+    divCells.push(
+      <div
+        className={props.gridEdit}
+        key={i}
+        onClick={e => {
+          //e.target.className = `${props.gridEdit}` + ` grid-cell--active`;
+          e.target.style.borderColor = 'green';
+          return <div className="grid-cell--active" />;
+        }}
+      />,
+    );
   }
   return (
     <div className="main-grid-grid">
@@ -56,6 +66,7 @@ const mapStateToProps = state => {
   return {
     gridCollums: state.grid.gridCollums,
     gridRows: state.grid.gridRows,
+    gridEdit: state.grid.gridEdit,
   };
 };
 
