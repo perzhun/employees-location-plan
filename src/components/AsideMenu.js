@@ -27,7 +27,7 @@ const AsideMenu = props => (
       color="primary"
       //className="main-grid__primary"
       onClick={() => {
-        props.dispatch(activateGrid('grid-cell'));
+        props.dispatch(activateGrid(true));
       }}
     >
       enable editing
@@ -44,7 +44,7 @@ const AsideMenu = props => (
       color="primary"
       //className="main-grid__primary"
       onClick={() => {
-        props.dispatch(activateGrid('grid-cell--unactive'));
+        props.dispatch(activateGrid(false));
       }}
     >
       disable editing

@@ -4,7 +4,8 @@ const gridDataInitialState = {
   grid: gridData,
   gridCollums: gridData.gridCollums,
   gridRows: gridData.gridRows,
-  gridEdit: 'grid-cell--unactive',
+  gridEdit: false,
+  workPlace: [],
 };
 
 export default (state = gridDataInitialState, action) => {
@@ -19,6 +20,11 @@ export default (state = gridDataInitialState, action) => {
       return {
         ...state,
         gridEdit: action.payload,
+      };
+    case 'ADD_WORK_PLACE':
+      return {
+        ...state,
+        workPlace: [...state.workPlace, action.payload],
       };
     default:
       return state;

@@ -52,6 +52,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "express": "^4.16.3",
     "lodash.flow": "^3.5.0",
     "react-dnd": "^5.0.0",

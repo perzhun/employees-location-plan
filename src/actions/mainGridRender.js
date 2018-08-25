@@ -6,3 +6,8 @@ export const floorRender = floor => ({
   type: 'FIRST_FLOOR',
   payload: floor,
 });
+
+export const addWorkPlace = payload => ({
+  type: 'ADD_WORK_PLACE',
+  payload,
+});
