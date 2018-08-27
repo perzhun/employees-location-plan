@@ -48,4 +48,11 @@ export default [
     photo: 'img/employee3.jpg',
     place: 5,
   },
+  {
+    name: 'bima',
+    floor: 'first',
+    room: 'first',
+    photo: 'img/employee3.jpg',
+    place: 5,
+  },
 ];

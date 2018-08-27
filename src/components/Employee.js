@@ -7,21 +7,42 @@ import { openSelected } from '../actions/mainGridRender';
 
 class Employee extends Component {
   render() {
-    const CustomSelect = styled.select`
-      display: ${this.props.selectedOpened ? 'inline' : 'none'};
-    `;
+    let chosenPerson = this.props.chosenEmployee.filter(
+      el => el.id === this.props.employeeKey,
+    );
+    let [chosenPersonObject] = chosenPerson;
+
+    let employeeArray = [];
+    let personObject;
+    if (chosenPersonObject) {
+      employeeArray = this.props.dummyData.filter(
+        el => el.name === chosenPersonObject.name,
+      );
+      [personObject] = employeeArray;
+    }
     return (
       <div
         className="grid-cell__text"
-        onClick={() => {
-          this.props.dispatch(openSelected(true));
+        onClick={e => {
+          let eventX = e.clientX;
+          let eventY = e.clientY;
+          this.props.dispatch(
+            openSelected({
+              selectedOpened: true,
+              selectX: eventX,
+              selectY: eventY,
+              cellId: this.props.employeeKey,
+            }),
+          );
         }}
       >
-        <CustomSelect>
-          <option value="test">test</option>
-          <option value="test1">test1</option>
-          <option value="test2">test2</option>
-        </CustomSelect>
+        {personObject && (
+          <img
+            className="employee_circle"
+            src={personObject.photo}
+            alt="portrait"
+          />
+        )}
       </div>
     );
   }
@@ -31,11 +52,19 @@ Employee.propTypes = {
   person: PropTypes.object,
   name: PropTypes.string,
   selectedOpened: PropTypes.bool,
+  selectX: PropTypes.number,
+  selectY: PropTypes.number,
+  chosenEmployee: PropTypes.array,
 };
 
 const mapStateToProps = state => {
   return {
-    selectedOpened: state.grid.selectedOpened,
+    selectedOpened: state.grid.modalProps.selectedOpened,
+    selectX: state.grid.modalProps.selectX,
+    selectY: state.grid.modalProps.selectY,
+    modalProps: state.grid.modalProps,
+    dummyData: state.employees.employees,
+    chosenEmployee: state.employees.chosenEmployee,
   };
 };
 

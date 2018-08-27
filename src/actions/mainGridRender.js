@@ -16,3 +16,8 @@ export const openSelected = payload => ({
   type: 'OPEN_SELECT',
   payload,
 });
+
+export const choseEmployee = payload => ({
+  type: 'CHOSE_EMPLOYEE',
+  payload,
+});
