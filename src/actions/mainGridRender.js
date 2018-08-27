@@ -2,14 +2,22 @@
 the first room component will render
 */
 
-export const firstFloorRender = () => ({
+export const floorRender = floor => ({
   type: 'FIRST_FLOOR',
-  render: 'first floor',
-  room: 'first floor',
+  payload: floor,
 });
 
-export const secondFloorRender = () => ({
-  type: 'SECOND_FLOOR',
-  render: 'second floor',
-  room: 'second floor',
+export const addWorkPlace = payload => ({
+  type: 'ADD_WORK_PLACE',
+  payload,
+});
+
+export const openSelected = payload => ({
+  type: 'OPEN_SELECT',
+  payload,
+});
+
+export const choseEmployee = payload => ({
+  type: 'CHOSE_EMPLOYEE',
+  payload,
 });

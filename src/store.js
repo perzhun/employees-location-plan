@@ -1,10 +1,11 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import menuReducer from './reducers/menuReducer';
 import mainGridReducer from './reducers/mainGridReducer';
-import FloorReducer from './reducers/FloorReducer';
+import gridDataReducer from './reducers/gridData';
+import employeeReducer from './reducers/employeeReducer';
 
-const middleware = [thunk];
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // redux store connecting menu , render and reducer
 
@@ -13,9 +14,10 @@ export default () => {
     combineReducers({
       menu: menuReducer,
       render: mainGridReducer,
-      room: FloorReducer,
+      grid: gridDataReducer,
+      employees: employeeReducer,
     }),
+    composeEnhancers(applyMiddleware(thunk)),
   );
-
   return store;
 };

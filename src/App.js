@@ -7,6 +7,8 @@ import './styles/app.scss';
 
 const store = configureStore();
 
+console.log(store.getState());
+
 const App = () => {
   return (
     <Provider store={store}>
