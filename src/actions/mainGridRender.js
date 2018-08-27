@@ -11,3 +11,8 @@ export const addWorkPlace = payload => ({
   type: 'ADD_WORK_PLACE',
   payload,
 });
+
+export const openSelected = payload => ({
+  type: 'OPEN_SELECT',
+  payload,
+});

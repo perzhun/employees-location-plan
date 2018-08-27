@@ -6,6 +6,7 @@ const gridDataInitialState = {
   gridRows: gridData.gridRows,
   gridEdit: false,
   workPlace: [],
+  selectedOpened: false,
 };
 
 export default (state = gridDataInitialState, action) => {
@@ -25,6 +26,11 @@ export default (state = gridDataInitialState, action) => {
       return {
         ...state,
         workPlace: [...state.workPlace, action.payload],
+      };
+    case 'OPEN_SELECT':
+      return {
+        ...state,
+        selectedOpened: action.payload,
       };
     default:
       return state;

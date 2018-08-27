@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 //import classNames from 'classnames';
+import Employee from './Employee';
 import { addWorkPlace } from '../actions/mainGridRender';
 
 /*
@@ -22,17 +23,13 @@ const FirstFloor = props => {
       <div
         className={props.gridEdit ? 'grid-cell' : 'grid-cell--unactive'}
         key={i}
-        onClick={e => {
-          e.target.className = 'grid-cell--active';
-          //e.target.style.borderColor = 'green';
-          //return <div className="grid-cell--active" />;
+        onClick={() => {
           props.dispatch(addWorkPlace(i));
         }}
       >
-        {/*props.workPlace && <div className='grid-cell--active' />*/}
         {props.workPlace.indexOf(i) !== -1 && (
           <div className="grid-cell--active">
-            <span className="grid-cell__text"> bima </span>
+            <Employee />
           </div>
         )}
       </div>,
