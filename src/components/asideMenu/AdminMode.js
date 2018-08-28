@@ -5,11 +5,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import {
-  EnableEditing,
-  activateGrid,
-  settingsOption,
-} from '../../actions/menu';
+import { adminAuth } from '../../actions/menu';
 
 const styles = () => ({
   colorSwitchBase: {
@@ -29,18 +25,14 @@ const styles = () => ({
   },
 });
 
-class CustomizedSwitches extends React.Component {
+class AdminMode extends React.Component {
   state = {
     checkedA: false,
   };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
-    this.props.enableEditing(event.target.checked);
-    if (!event.target.checked) {
-      this.props.activateGrid(false);
-      this.props.settingsOption('');
-    }
+    this.props.adminAuth(event.target.checked);
   };
 
   render() {
@@ -60,7 +52,7 @@ class CustomizedSwitches extends React.Component {
             }}
           />
         }
-        label="Enable editing"
+        label="Admin Authenticated"
         classes={{
           label: classes.root,
         }}
@@ -69,31 +61,23 @@ class CustomizedSwitches extends React.Component {
   }
 }
 
-CustomizedSwitches.propTypes = {
+AdminMode.propTypes = {
   classes: PropTypes.object.isRequired,
-  enableEditing: PropTypes.func,
-  activateGrid: PropTypes.func,
-  settingsOption: PropTypes.func,
+  adminAuth: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    enableEditing: enabled => {
-      dispatch(EnableEditing(enabled));
-    },
-    activateGrid: enabled => {
-      dispatch(activateGrid(enabled));
-    },
-    settingsOption: option => {
-      dispatch(settingsOption(option));
+    adminAuth: enabled => {
+      dispatch(adminAuth(enabled));
     },
   };
 };
 
 export default compose(
-  withStyles(styles, { name: 'CustomizedSwitches' }),
+  withStyles(styles, { name: 'AdminMode' }),
   connect(
     null,
     mapDispatchToProps,
   ),
-)(CustomizedSwitches);
+)(AdminMode);

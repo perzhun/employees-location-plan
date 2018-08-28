@@ -24,16 +24,20 @@ class Employee extends Component {
       <div
         className="grid-cell__text"
         onClick={e => {
-          let eventX = e.clientX;
-          let eventY = e.clientY;
-          this.props.dispatch(
-            openSelected({
-              selectedOpened: true,
-              selectX: eventX,
-              selectY: eventY,
-              cellId: this.props.employeeKey,
-            }),
-          );
+          if (
+            this.props.settingsOptionEnabled === 'Employee location settings'
+          ) {
+            let eventX = e.clientX;
+            let eventY = e.clientY;
+            this.props.dispatch(
+              openSelected({
+                selectedOpened: true,
+                selectX: eventX,
+                selectY: eventY,
+                cellId: this.props.employeeKey,
+              }),
+            );
+          }
         }}
       >
         {personObject && (
@@ -55,6 +59,7 @@ Employee.propTypes = {
   selectX: PropTypes.number,
   selectY: PropTypes.number,
   chosenEmployee: PropTypes.array,
+  settingsOptionEnabled: PropTypes.string,
 };
 
 const mapStateToProps = state => {
@@ -65,6 +70,7 @@ const mapStateToProps = state => {
     modalProps: state.grid.modalProps,
     dummyData: state.employees.employees,
     chosenEmployee: state.employees.chosenEmployee,
+    settingsOptionEnabled: state.menu.settingsOptionEnabled,
   };
 };
 

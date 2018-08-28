@@ -26,3 +26,13 @@ export const EnableEditing = payload => ({
   type: 'ENABLE_EDITING',
   payload,
 });
+
+export const settingsOption = payload => ({
+  type: 'SETTINGS_OPTION',
+  payload,
+});
+
+export const adminAuth = payload => ({
+  type: 'ADMIN_AUTH',
+  payload,
+});

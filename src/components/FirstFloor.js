@@ -30,7 +30,9 @@ const FirstFloor = props => {
         className={props.gridEdit ? 'grid-cell' : 'grid-cell--unactive'}
         key={i}
         onClick={() => {
-          props.dispatch(addWorkPlace(i));
+          if (props.settingsOptionEnabled === 'Work place settings') {
+            props.dispatch(addWorkPlace(i));
+          }
         }}
       >
         {props.workPlace.indexOf(i) !== -1 && (
@@ -102,6 +104,8 @@ FirstFloor.propTypes = {
   selectedOpened: PropTypes.bool,
   selectX: PropTypes.number,
   selectY: PropTypes.number,
+  cellId: PropTypes.number,
+  settingsOptionEnabled: PropTypes.string,
 };
 
 const mapStateToProps = state => {
@@ -116,6 +120,7 @@ const mapStateToProps = state => {
     selectX: state.grid.modalProps.selectX,
     selectY: state.grid.modalProps.selectY,
     cellId: state.grid.modalProps.cellId,
+    settingsOptionEnabled: state.menu.settingsOptionEnabled,
   };
 };
 

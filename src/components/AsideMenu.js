@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Close from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { menuUntoggle, rangeChange, activateGrid } from '../actions/menu';
+import { menuUntoggle } from '../actions/menu';
 import CustomizedSwitches from './asideMenu/EditSwitchButton';
 import RadioButtonsGroup from './asideMenu/EditRadioButtons';
+import RenderedSettings from './asideMenu/RenderedSettings';
+import AdminMode from './asideMenu/AdminMode';
 //import '/react-input-range/lib/css/index.css';
 
 // toggable aside menu that contains a search function and a close button
@@ -24,33 +25,14 @@ const AsideMenu = props => (
       />
     </div>
     <textarea placeholder="Search" className="aside-menu__search" />
-    <CustomizedSwitches />
-    <RadioButtonsGroup />
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={() => {
-        props.dispatch(activateGrid(true));
-      }}
-    >
-      enable editing
-    </Button>
-    <input
-      min={2}
-      max={20}
-      type="range"
-      defaultValue={props.grid}
-      onChange={event => props.dispatch(rangeChange(event.target.value))}
-    />
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={() => {
-        props.dispatch(activateGrid(false));
-      }}
-    >
-      disable editing
-    </Button>
+    <AdminMode />
+    {props.adminAuthenticated && (
+      <div>
+        <CustomizedSwitches />
+        <RadioButtonsGroup />
+        <RenderedSettings />
+      </div>
+    )}
   </aside>
 );
 
@@ -59,13 +41,13 @@ AsideMenu.propTypes = {
   menuUntoggle: PropTypes.func,
   toggle: PropTypes.bool,
   dispatch: PropTypes.func,
-  grid: PropTypes.number,
+  adminAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
   return {
     menu: state.menu,
-    grid: state.grid.gridCollums,
+    adminAuthenticated: state.menu.adminAuthenticated,
   };
 };
 

@@ -4,6 +4,8 @@ menu reducer , returns changes to the menu toggle state based on the case type
 const menuInitialState = {
   toggle: true,
   editingEnabled: false,
+  settingsOptionEnabled: '',
+  adminAuthenticated: false,
 };
 
 export default (state = menuInitialState, action) => {
@@ -21,7 +23,17 @@ export default (state = menuInitialState, action) => {
     case 'ENABLE_EDITING':
       return {
         ...state,
-        editingEnabled: action.toggle,
+        editingEnabled: action.payload,
+      };
+    case 'SETTINGS_OPTION':
+      return {
+        ...state,
+        settingsOptionEnabled: action.payload,
+      };
+    case 'ADMIN_AUTH':
+      return {
+        ...state,
+        adminAuthenticated: action.payload,
       };
     default:
       return state;
