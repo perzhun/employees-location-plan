@@ -26,6 +26,14 @@ const styles = () => ({
   root: {
     color: 'white',
     fontWeight: 'bold',
+    marginRight: '1em',
+  },
+  formControlLabel: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    margin: '0 auto',
+    justifyContent: 'space-between',
   },
 });
 
@@ -63,6 +71,7 @@ class CustomizedSwitches extends React.Component {
         label="Enable editing"
         classes={{
           label: classes.root,
+          root: classes.formControlLabel,
         }}
       />
     );

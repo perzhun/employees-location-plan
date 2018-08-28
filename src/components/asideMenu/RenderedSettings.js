@@ -14,14 +14,17 @@ const RenderedSettings = props => {
     >
       {props.editingEnabled &&
       props.settingsOptionEnabled === 'Grid settings' ? (
-        <input
-          min={2}
-          max={20}
-          type="range"
-          defaultValue={props.grid}
-          className="slider"
-          onChange={event => props.rangeChange(event.target.value)}
-        />
+        <div>
+          <input
+            min={2}
+            max={20}
+            type="range"
+            defaultValue={props.grid}
+            className="slider"
+            onChange={event => props.rangeChange(event.target.value)}
+          />
+          <p>Use the slider to set the size of the grid</p>
+        </div>
       ) : props.settingsOptionEnabled === 'Work place settings' ? (
         <p className="aside-menu-renderedSettings__message">
           Set working places by clicking on empty cells
