@@ -21,3 +21,8 @@ export const activateGrid = payload => ({
   type: 'ACTIVE_GRID',
   payload,
 });
+
+export const EnableEditing = payload => ({
+  type: 'ENABLE_EDITING',
+  payload,
+});

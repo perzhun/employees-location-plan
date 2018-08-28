@@ -4,6 +4,8 @@ import Close from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { menuUntoggle, rangeChange, activateGrid } from '../actions/menu';
+import CustomizedSwitches from './asideMenu/EditSwitchButton';
+import RadioButtonsGroup from './asideMenu/EditRadioButtons';
 //import '/react-input-range/lib/css/index.css';
 
 // toggable aside menu that contains a search function and a close button
@@ -22,10 +24,11 @@ const AsideMenu = props => (
       />
     </div>
     <textarea placeholder="Search" className="aside-menu__search" />
+    <CustomizedSwitches />
+    <RadioButtonsGroup />
     <Button
       variant="contained"
       color="primary"
-      //className="main-grid__primary"
       onClick={() => {
         props.dispatch(activateGrid(true));
       }}
@@ -42,7 +45,6 @@ const AsideMenu = props => (
     <Button
       variant="contained"
       color="primary"
-      //className="main-grid__primary"
       onClick={() => {
         props.dispatch(activateGrid(false));
       }}
