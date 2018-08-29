@@ -18,7 +18,6 @@ the buttons dispatch actinos to change the render state accordingly
 
 const MainGrid = props => (
   <section className={props.menu.toggle ? 'main-grid' : 'main-grid--untoggled'}>
-    <h1 className="main-grid__title">Exadel</h1>
     <Menu
       className={
         props.menu.toggle
@@ -31,7 +30,7 @@ const MainGrid = props => (
     />
     <div className="main-grid-buttons">
       <Button
-        variant="contained"
+        variant="outlined"
         color="secondary"
         className="main-grid__primary"
         onClick={() => {
@@ -41,7 +40,7 @@ const MainGrid = props => (
         First Floor
       </Button>
       <Button
-        variant="contained"
+        variant="outlined"
         color="secondary"
         className="main-grid__primary"
         onClick={() => {
