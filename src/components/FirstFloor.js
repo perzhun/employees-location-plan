@@ -61,7 +61,9 @@ const FirstFloor = props => {
   ));
   return (
     <div className="main-grid-grid">
-      <CustomGrid className="first-floor">{divCells}</CustomGrid>
+      <div className="main-grid-wrapper">
+        <CustomGrid className="first-floor">{divCells}</CustomGrid>
+      </div>
       <Modal
         isOpen={props.selectedOpened}
         ariaHideApp={false}

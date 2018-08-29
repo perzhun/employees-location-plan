@@ -8,6 +8,7 @@ import { menuToggle } from '../actions/menu';
 import { floorRender } from '../actions/mainGridRender';
 import FirstFloor from './FirstFloor';
 import SecondFloor from './SecondFloor';
+import FloorButtons from './FloorButtons';
 
 /*
 The main grid where the office map will render.
@@ -29,26 +30,7 @@ const MainGrid = props => (
       }}
     />
     <div className="main-grid-buttons">
-      <Button
-        variant="outlined"
-        color="secondary"
-        className="main-grid__primary"
-        onClick={() => {
-          props.dispatch(floorRender('first floor'));
-        }}
-      >
-        First Floor
-      </Button>
-      <Button
-        variant="outlined"
-        color="secondary"
-        className="main-grid__primary"
-        onClick={() => {
-          props.dispatch(floorRender('second floor'));
-        }}
-      >
-        Second Floor
-      </Button>
+      <FloorButtons />
     </div>
     <ReactCSSTransitionGroup
       transitionName="fade"
