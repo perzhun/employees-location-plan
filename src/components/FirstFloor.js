@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
@@ -18,82 +18,106 @@ import {
 */
 Modal.defaultStyles.overlay.backgroundColor = 'none';
 
-const FirstFloor = props => {
-  const CustomGrid = styled.div`
-    grid-template-rows: repeat(${props.gridRows}, 1fr);
-    grid-template-columns: repeat(${props.gridCollums}, 1fr);
-  `;
-  let divCells = [];
-  for (let i = 0; i < props.gridRows * props.gridCollums; i++) {
-    divCells.push(
-      <div
-        className={props.gridEdit ? 'grid-cell' : 'grid-cell--unactive'}
-        key={i}
-        onClick={() => {
-          if (props.settingsOptionEnabled === 'Work place settings') {
-            props.dispatch(addWorkPlace(i));
-          }
-        }}
-      >
-        {props.workPlace.indexOf(i) !== -1 && (
-          <div className="grid-cell--active">
-            <Employee employeeKey={i} />
-          </div>
-        )}
-      </div>,
-    );
-  }
-  const customModal = {
-    content: {
-      left: props.selectX + 30,
-      top: props.selectY,
-      width: '100px',
-      height: '20px',
-      position: 'absolute',
-      padding: 0,
-    },
+class FirstFloor extends Component {
+  state = {
+    searchText: '',
   };
-  let employeeList;
-  employeeList = props.dummyData.map((person, index) => (
-    <option key={index} value={person.name}>
-      {person.name}
-    </option>
-  ));
-  return (
-    <div className="main-grid-grid">
-      <div className="main-grid-wrapper">
-        <CustomGrid className="first-floor">{divCells}</CustomGrid>
-      </div>
-      <Modal
-        isOpen={props.selectedOpened}
-        ariaHideApp={false}
-        shouldCloseOnOverlayClick={true}
-        style={customModal}
-        onRequestClose={() =>
-          props.dispatch(
-            openSelected({
-              selectedOpened: false,
-              selectX: 0,
-              selectY: 0,
-            }),
-          )
-        }
-        contentLabel="Employee select"
-      >
-        <select
-          className="modal__select"
-          onChange={e => {
-            props.dispatch(
-              choseEmployee({ name: e.target.value, id: props.cellId }),
-            );
+
+  HandleSearch = e => {
+    this.setState({ searchText: e.target.value });
+  };
+  handleSelectClick = e => {
+    this.props.dispatch(
+      choseEmployee({
+        name: e.target.innerText,
+        id: this.props.cellId,
+      }),
+    );
+    this.props.dispatch(
+      openSelected({
+        selectedOpened: false,
+        selectX: 0,
+        selectY: 0,
+      }),
+    );
+  };
+
+  render() {
+    const CustomGrid = styled.div`
+      grid-template-rows: repeat(${this.props.gridRows}, 1fr);
+      grid-template-columns: repeat(${this.props.gridCollums}, 1fr);
+    `;
+    let divCells = [];
+    for (let i = 0; i < this.props.gridRows * this.props.gridCollums; i++) {
+      divCells.push(
+        <div
+          className={this.props.gridEdit ? 'grid-cell' : 'grid-cell--unactive'}
+          key={i}
+          onClick={() => {
+            if (this.props.settingsOptionEnabled === 'Work place settings') {
+              this.props.dispatch(addWorkPlace(i));
+            }
           }}
         >
-          {employeeList}
-        </select>
-      </Modal>
-    </div>
-  );
-};
+          {this.props.workPlace.indexOf(i) !== -1 && (
+            <div className="grid-cell--active">
+              <Employee employeeKey={i} />
+            </div>
+          )}
+        </div>,
+      );
+    }
+    const customModal = {
+      content: {
+        left: this.props.selectX + 30,
+        top: this.props.selectY,
+        width: '200px',
+        height: '300px',
+        position: 'absolute',
+        padding: 0,
+      },
+    };
+    let employeeList;
+    employeeList = this.props.dummyData.map((person, index) => {
+      if (person.name.indexOf(this.state.searchText) > -1) {
+        return <li key={index}>{person.name}</li>;
+      }
+    });
+    return (
+      <div className="main-grid-grid">
+        <div className="main-grid-wrapper">
+          <CustomGrid className="first-floor">{divCells}</CustomGrid>
+        </div>
+        <Modal
+          isOpen={this.props.selectedOpened}
+          ariaHideApp={false}
+          shouldCloseOnOverlayClick={true}
+          style={customModal}
+          onRequestClose={() =>
+            this.props.dispatch(
+              openSelected({
+                selectedOpened: false,
+                selectX: 0,
+                selectY: 0,
+              }),
+            )
+          }
+          contentLabel="Employee select"
+        >
+          <input
+            type="text"
+            className="modal__input"
+            onChange={this.HandleSearch}
+            value={this.state.searchText}
+          />
+          <ul className="modal__select" onClick={this.handleSelectClick}>
+            {employeeList}
+          </ul>
+        </Modal>
+      </div>
+    );
+  }
+}
 
 FirstFloor.propTypes = {
   chosenEmployee: PropTypes.array,
