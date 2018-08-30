@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Menu from '@material-ui/icons/Menu';
-import Button from '@material-ui/core/Button';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { menuToggle } from '../actions/menu';
-import { floorRender } from '../actions/mainGridRender';
 import FirstFloor from './FirstFloor';
 import SecondFloor from './SecondFloor';
 import FloorButtons from './FloorButtons';
@@ -21,9 +19,11 @@ const MainGrid = props => (
   <section className={props.menu.toggle ? 'main-grid' : 'main-grid--untoggled'}>
     <Menu
       className={
-        props.menu.toggle
-          ? 'home__menu-button--hidden'
-          : 'home__menu-button--active'
+        props.menu.toggle ? (
+          'home__menu-button--hidden'
+        ) : (
+          'home__menu-button--active'
+        )
       }
       onClick={() => {
         props.dispatch(menuToggle());

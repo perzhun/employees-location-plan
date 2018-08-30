@@ -21,3 +21,8 @@ export const choseEmployee = payload => ({
   type: 'CHOSE_EMPLOYEE',
   payload,
 });
+
+export const deleteEmployee = payload => ({
+  type: 'DELETE_EMPLOYEE',
+  payload,
+});

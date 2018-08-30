@@ -5,11 +5,8 @@ import Modal from 'react-modal';
 import styled from 'styled-components';
 //import classNames from 'classnames';
 import Employee from './Employee';
-import {
-  addWorkPlace,
-  openSelected,
-  choseEmployee,
-} from '../actions/mainGridRender';
+import SelectModal from './SelectModal';
+import { addWorkPlace } from '../actions/mainGridRender';
 
 /*
  first floor components , contains a plan for all the rooms inside .
@@ -19,30 +16,6 @@ import {
 Modal.defaultStyles.overlay.backgroundColor = 'none';
 
 class FirstFloor extends Component {
-  state = {
-    searchText: '',
-  };
-
-  HandleSearch = e => {
-    this.setState({ searchText: e.target.value });
-  };
-  handleSelectClick = e => {
-    console.log(e.target.firstChild);
-    this.props.dispatch(
-      choseEmployee({
-        name: e.target.firstChild.innerText,
-        id: this.props.cellId,
-      }),
-    );
-    this.props.dispatch(
-      openSelected({
-        selectedOpened: false,
-        selectX: 0,
-        selectY: 0,
-      }),
-    );
-  };
-
   render() {
     const CustomGrid = styled.div`
       grid-template-rows: repeat(${this.props.gridRows}, 1fr);
@@ -63,9 +36,11 @@ class FirstFloor extends Component {
           {this.props.workPlace.indexOf(i) !== -1 && (
             <div
               className={
-                this.props.selectedOpened && this.props.cellId === i
-                  ? 'grid-cell--selected'
-                  : 'grid-cell--active'
+                this.props.selectedOpened && this.props.cellId === i ? (
+                  'grid-cell--selected'
+                ) : (
+                  'grid-cell--active'
+                )
               }
             >
               <Employee employeeKey={i} />
@@ -74,74 +49,18 @@ class FirstFloor extends Component {
         </div>,
       );
     }
-    const customModal = {
-      content: {
-        left: this.props.selectX + 30,
-        top: this.props.selectY,
-        width: '200px',
-        right: 'none',
-        bottom: 'none',
-        overflow: 'hidden',
-        position: 'absolute',
-        padding: 0,
-      },
-    };
-    let employeeList;
-    //let filterById = (person,index) => person.id === index;
-    employeeList = this.props.dummyData.map((person, index) => {
-      if (
-        person.name.toUpperCase().indexOf(this.state.searchText.toUpperCase()) >
-        -1
-      ) {
-        return (
-          <li key={index}>
-            <span>{person.name}</span>
-            {this.props.chosenEmployee.filter(el => el.id === person.id)
-              .length > 0 ? (
-              <p>test</p>
-            ) : null}
-          </li>
-        );
-      }
-    });
     return (
       <div className="main-grid-grid">
         <div className="main-grid-wrapper">
           <CustomGrid className="first-floor">{divCells}</CustomGrid>
         </div>
-        <Modal
-          isOpen={this.props.selectedOpened}
-          ariaHideApp={false}
-          shouldCloseOnOverlayClick={true}
-          style={customModal}
-          onRequestClose={() =>
-            this.props.dispatch(
-              openSelected({
-                selectedOpened: false,
-                selectX: 0,
-                selectY: 0,
-              }),
-            )
-          }
-          contentLabel="Employee select"
-        >
-          <input
-            type="text"
-            className="modal__input"
-            onChange={this.HandleSearch}
-            value={this.state.searchText}
-          />
-          <ul className="modal__select" onClick={this.handleSelectClick}>
-            {employeeList}
-          </ul>
-        </Modal>
+        <SelectModal />
       </div>
     );
   }
 }
 
 FirstFloor.propTypes = {
-  chosenEmployee: PropTypes.array,
   dummyData: PropTypes.array,
   gridCollums: PropTypes.number,
   gridRows: PropTypes.number,
@@ -149,8 +68,6 @@ FirstFloor.propTypes = {
   dispatch: PropTypes.func,
   workPlace: PropTypes.array,
   selectedOpened: PropTypes.bool,
-  selectX: PropTypes.number,
-  selectY: PropTypes.number,
   cellId: PropTypes.number,
   settingsOptionEnabled: PropTypes.string,
 };
@@ -158,7 +75,6 @@ FirstFloor.propTypes = {
 const mapStateToProps = state => {
   return {
     dummyData: state.employees.employees,
-    chosenEmployee: state.employees.chosenEmployee,
     gridCollums: state.grid.gridCollums,
     gridRows: state.grid.gridRows,
     gridEdit: state.grid.gridEdit,

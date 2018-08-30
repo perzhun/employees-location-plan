@@ -12,6 +12,13 @@ export default (state = employeeInitialState, action) => {
         ...state,
         chosenEmployee: [...state.chosenEmployee, action.payload],
       };
+    case 'DELETE_EMPLOYEE':
+      return {
+        ...state,
+        chosenEmployee: state.chosenEmployee.filter(
+          employee => employee.name !== action.payload,
+        ),
+      };
     default:
       return state;
   }
