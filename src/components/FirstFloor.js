@@ -27,9 +27,10 @@ class FirstFloor extends Component {
     this.setState({ searchText: e.target.value });
   };
   handleSelectClick = e => {
+    console.log(e.target.firstChild);
     this.props.dispatch(
       choseEmployee({
-        name: e.target.innerText,
+        name: e.target.firstChild.innerText,
         id: this.props.cellId,
       }),
     );
@@ -60,7 +61,13 @@ class FirstFloor extends Component {
           }}
         >
           {this.props.workPlace.indexOf(i) !== -1 && (
-            <div className="grid-cell--active">
+            <div
+              className={
+                this.props.selectedOpened && this.props.cellId === i
+                  ? 'grid-cell--selected'
+                  : 'grid-cell--active'
+              }
+            >
               <Employee employeeKey={i} />
             </div>
           )}
@@ -72,15 +79,29 @@ class FirstFloor extends Component {
         left: this.props.selectX + 30,
         top: this.props.selectY,
         width: '200px',
-        height: '300px',
+        right: 'none',
+        bottom: 'none',
+        overflow: 'hidden',
         position: 'absolute',
         padding: 0,
       },
     };
     let employeeList;
+    //let filterById = (person,index) => person.id === index;
     employeeList = this.props.dummyData.map((person, index) => {
-      if (person.name.indexOf(this.state.searchText) > -1) {
-        return <li key={index}>{person.name}</li>;
+      if (
+        person.name.toUpperCase().indexOf(this.state.searchText.toUpperCase()) >
+        -1
+      ) {
+        return (
+          <li key={index}>
+            <span>{person.name}</span>
+            {this.props.chosenEmployee.filter(el => el.id === person.id)
+              .length > 0 ? (
+              <p>test</p>
+            ) : null}
+          </li>
+        );
       }
     });
     return (

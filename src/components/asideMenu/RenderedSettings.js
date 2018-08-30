@@ -16,8 +16,8 @@ const RenderedSettings = props => {
       props.settingsOptionEnabled === 'Grid settings' ? (
         <div>
           <input
-            min={2}
-            max={20}
+            min={10}
+            max={30}
             type="range"
             defaultValue={props.grid}
             className="slider"
