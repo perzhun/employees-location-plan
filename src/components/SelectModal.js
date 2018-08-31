@@ -107,8 +107,7 @@ class SelectModal extends Component {
               selectBottom: 0,
               selectright: 0,
             }),
-          )
-        }
+          )}
         contentLabel="Employee select"
       >
         <div className="modal__header">

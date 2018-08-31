@@ -6,7 +6,7 @@ import styled from 'styled-components';
 //import classNames from 'classnames';
 import Employee from './Employee';
 import SelectModal from './SelectModal';
-import { addWorkPlace } from '../actions/mainGridRender';
+import { addWorkPlace, removeWorkPlace } from '../actions/mainGridRender';
 
 /*
  first floor components , contains a plan for all the rooms inside .
@@ -29,16 +29,20 @@ class FirstFloor extends Component {
           key={i}
           onClick={() => {
             if (this.props.settingsOptionEnabled === 'Work place settings') {
-              this.props.dispatch(addWorkPlace(i));
+              this.props.workPlace.indexOf(i) !== -1
+                ? this.props.dispatch(removeWorkPlace(i))
+                : this.props.dispatch(addWorkPlace(i));
             }
           }}
         >
           {this.props.workPlace.indexOf(i) !== -1 && (
             <div
               className={
-                this.props.selectedOpened && this.props.cellId === i
-                  ? 'grid-cell--selected'
-                  : 'grid-cell--active'
+                this.props.selectedOpened && this.props.cellId === i ? (
+                  'grid-cell--selected'
+                ) : (
+                  'grid-cell--active'
+                )
               }
             >
               <Employee employeeKey={i} />

@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import { adminAuth } from '../../actions/menu';
+import {
+  adminAuth,
+  EnableEditing,
+  settingsOption,
+  activateGrid,
+} from '../../actions/menu';
 
 const styles = () => ({
   colorSwitchBase: {
@@ -31,8 +36,14 @@ class AdminMode extends React.Component {
   };
 
   handleChange = name => event => {
-    this.setState({ [name]: event.target.checked });
-    this.props.adminAuth(event.target.checked);
+    let enable = event.target.checked;
+    this.setState({ [name]: enable });
+    this.props.adminLogin(enable);
+    /*this.props.EnableEditing(enable);
+    if (enable === false) {
+      this.props.activateGrid(enable);
+    }
+    this.props.settingsOption('');*/
   };
 
   render() {
@@ -64,20 +75,40 @@ class AdminMode extends React.Component {
 AdminMode.propTypes = {
   classes: PropTypes.object.isRequired,
   adminAuth: PropTypes.func,
+  EnableEditing: PropTypes.func,
+  settingsOption: PropTypes.func,
+  activateGrid: PropTypes.func,
+  adminLogin: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    adminLogin: enabled => {
+      dispatch(adminAuth(enabled));
+      dispatch(EnableEditing(enabled));
+      if (enabled === false) {
+        dispatch(activateGrid(enabled));
+      }
+      dispatch(settingsOption(''));
+    },
+    /*
     adminAuth: enabled => {
       dispatch(adminAuth(enabled));
     },
+    EnableEditing: enabled => {
+      dispatch(EnableEditing(enabled));
+    },
+    settingsOption: option => {
+      dispatch(settingsOption(option));
+    },
+    activateGrid: enabled => {
+      dispatch(activateGrid(enabled));
+    },
+    */
   };
 };
 
 export default compose(
   withStyles(styles, { name: 'AdminMode' }),
-  connect(
-    null,
-    mapDispatchToProps,
-  ),
+  connect(null, mapDispatchToProps),
 )(AdminMode);

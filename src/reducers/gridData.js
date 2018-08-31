@@ -34,6 +34,11 @@ export default (state = gridDataInitialState, action) => {
         ...state,
         workPlace: [...state.workPlace, action.payload],
       };
+    case 'REMOVE_WORK_PLACE':
+      return {
+        ...state,
+        workPlace: state.workPlace.filter(place => place !== action.payload),
+      };
     case 'OPEN_SELECT':
       return {
         ...state,

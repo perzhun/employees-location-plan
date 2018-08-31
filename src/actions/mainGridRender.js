@@ -12,6 +12,11 @@ export const addWorkPlace = payload => ({
   payload,
 });
 
+export const removeWorkPlace = payload => ({
+  type: 'REMOVE_WORK_PLACE',
+  payload,
+});
+
 export const openSelected = payload => ({
   type: 'OPEN_SELECT',
   payload,
