@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -6,6 +7,14 @@ import { openSelected } from '../actions/mainGridRender';
 //import { DragSource } from 'react-dnd';
 
 class Employee extends Component {
+  /*getposition(el) {
+    let positionTop = el.getBoundingClientRect().top;
+    let positionLeft = el.getBoundingClientRect().left;
+    //this.setState()
+    console.log(positionTop, positionLeft);
+  }
+  */
+
   render() {
     let chosenPerson = this.props.chosenEmployee.filter(
       el => el.id === this.props.employeeKey,
@@ -22,18 +31,40 @@ class Employee extends Component {
     }
     return (
       <div
+        //ref={circle => this.getposition(circle)}
+        ref={React.createRef()}
         className="grid-cell__text"
         onClick={e => {
           if (
             this.props.settingsOptionEnabled === 'Employee location settings'
           ) {
-            let eventX = e.clientX;
-            let eventY = e.clientY;
+            let eventX =
+              e.nativeEvent.target.parentNode.getBoundingClientRect().left +
+              e.nativeEvent.target.parentNode.getBoundingClientRect().width;
+            let eventY = e.nativeEvent.target.parentNode.getBoundingClientRect()
+              .top;
+            let eventRight = e.nativeEvent.target.parentNode.getBoundingClientRect()
+              .right;
+            let eventBottom = e.nativeEvent.target.parentNode.getBoundingClientRect()
+              .bottom;
+            //let rect = ReactDOM.findDomNode().getBoundingClientRect();
+            if (eventX + 200 > window.innerWidth) {
+              eventX =
+                eventX -
+                e.nativeEvent.target.parentNode.getBoundingClientRect().width -
+                220;
+            }
+            if (eventY + 300 > window.innerHeight) {
+              eventY = eventY - 300;
+            }
+            console.log(window.innerWidth);
             this.props.dispatch(
               openSelected({
                 selectedOpened: true,
                 selectX: eventX,
                 selectY: eventY,
+                selectBottom: eventBottom,
+                selectRight: eventRight,
                 cellId: this.props.employeeKey,
               }),
             );
@@ -58,6 +89,8 @@ Employee.propTypes = {
   selectedOpened: PropTypes.bool,
   selectX: PropTypes.number,
   selectY: PropTypes.number,
+  selectRight: PropTypes.number,
+  selectBottom: PropTypes.number,
   chosenEmployee: PropTypes.array,
   settingsOptionEnabled: PropTypes.string,
 };
@@ -67,6 +100,8 @@ const mapStateToProps = state => {
     selectedOpened: state.grid.modalProps.selectedOpened,
     selectX: state.grid.modalProps.selectX,
     selectY: state.grid.modalProps.selectY,
+    selectRight: state.grid.modalProps.selectRight,
+    selectBottom: state.grid.modalProps.selectBottom,
     modalProps: state.grid.modalProps,
     dummyData: state.employees.employees,
     chosenEmployee: state.employees.chosenEmployee,

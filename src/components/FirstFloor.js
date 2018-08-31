@@ -36,11 +36,9 @@ class FirstFloor extends Component {
           {this.props.workPlace.indexOf(i) !== -1 && (
             <div
               className={
-                this.props.selectedOpened && this.props.cellId === i ? (
-                  'grid-cell--selected'
-                ) : (
-                  'grid-cell--active'
-                )
+                this.props.selectedOpened && this.props.cellId === i
+                  ? 'grid-cell--selected'
+                  : 'grid-cell--active'
               }
             >
               <Employee employeeKey={i} />

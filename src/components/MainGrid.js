@@ -19,11 +19,9 @@ const MainGrid = props => (
   <section className={props.menu.toggle ? 'main-grid' : 'main-grid--untoggled'}>
     <Menu
       className={
-        props.menu.toggle ? (
-          'home__menu-button--hidden'
-        ) : (
-          'home__menu-button--active'
-        )
+        props.menu.toggle
+          ? 'home__menu-button--hidden'
+          : 'home__menu-button--active'
       }
       onClick={() => {
         props.dispatch(menuToggle());

@@ -10,6 +10,8 @@ const gridDataInitialState = {
     selectedOpened: false,
     selectX: 0,
     selectY: 0,
+    selectBottom: 0,
+    selectRight: 0,
     cellId: 0,
   },
 };

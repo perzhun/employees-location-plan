@@ -30,20 +30,20 @@ class SelectModal extends Component {
         selectedOpened: false,
         selectX: 0,
         selectY: 0,
+        selectBottom: 0,
+        selectright: 0,
       }),
     );
-    console.log('employee add');
   };
 
   handleEmployeeDelete = name => {
     this.props.dispatch(deleteEmployee(name));
-    console.log('close');
   };
 
   render() {
     const customModal = {
       content: {
-        left: this.props.selectX + 30,
+        left: this.props.selectX + 10,
         top: this.props.selectY,
         width: '200px',
         right: 'none',
@@ -64,7 +64,18 @@ class SelectModal extends Component {
     if (filterById.length > 0) {
       [filteredPerson] = filterById;
     }
-    employeeList = this.props.dummyData.map((person, index) => {
+    let filtered = this.props.dummyData.filter(remainingEmployees => {
+      return !this.props.chosenEmployee.some(obj => {
+        return remainingEmployees.name === obj.name;
+      });
+    });
+    let assignedEmployee = this.props.dummyData.filter(person => {
+      if (filterById.length > 0 && filteredPerson.name === person.name) {
+        return person;
+      }
+    });
+    let [assignedEmployeeObj] = assignedEmployee;
+    employeeList = filtered.map((person, index) => {
       if (
         person.name.toUpperCase().indexOf(this.state.searchText.toUpperCase()) >
         -1
@@ -77,14 +88,6 @@ class SelectModal extends Component {
             }}
           >
             <span>{person.name}</span>
-            {filterById.length > 0 && filteredPerson.name === person.name ? (
-              <Clear
-                onClick={e => {
-                  e.stopPropagation();
-                  this.handleEmployeeDelete(person.name);
-                }}
-              />
-            ) : null}
           </li>
         );
       }
@@ -101,17 +104,38 @@ class SelectModal extends Component {
               selectedOpened: false,
               selectX: 0,
               selectY: 0,
+              selectBottom: 0,
+              selectright: 0,
             }),
-          )}
+          )
+        }
         contentLabel="Employee select"
       >
-        <input
-          type="text"
-          className="modal__input"
-          onChange={this.HandleSearch}
-          value={this.state.searchText}
-        />
-        <ul className="modal__select">{employeeList}</ul>
+        <div className="modal__header">
+          <h4>Assign an employee to this working place</h4>
+        </div>
+        <div className="modal__content">
+          <input
+            type="text"
+            className="modal__input"
+            onChange={this.HandleSearch}
+            value={this.state.searchText}
+          />
+          <ul className="modal__select">
+            {assignedEmployee.length > 0 && (
+              <li className="select__assigned">
+                <span>{assignedEmployeeObj.name}</span>
+                <Clear
+                  onClick={e => {
+                    e.stopPropagation();
+                    this.handleEmployeeDelete(assignedEmployeeObj.name);
+                  }}
+                />
+              </li>
+            )}
+            {employeeList}
+          </ul>
+        </div>
       </Modal>
     );
   }
@@ -125,6 +149,8 @@ SelectModal.propTypes = {
   selectX: PropTypes.number,
   selectY: PropTypes.number,
   cellId: PropTypes.number,
+  selectBottom: PropTypes.number,
+  selectRight: PropTypes.number,
 };
 
 const mapStateToProps = state => {
@@ -134,6 +160,8 @@ const mapStateToProps = state => {
     selectedOpened: state.grid.modalProps.selectedOpened,
     selectX: state.grid.modalProps.selectX,
     selectY: state.grid.modalProps.selectY,
+    selectBottom: state.grid.modalProps.selectBottom,
+    selectRight: state.grid.modalProps.selectRight,
     cellId: state.grid.modalProps.cellId,
   };
 };

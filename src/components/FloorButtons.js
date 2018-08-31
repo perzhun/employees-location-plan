@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Room from '@material-ui/icons/Room';
+import Filter1 from '@material-ui/icons/Filter1';
+import Filter2 from '@material-ui/icons/Filter2';
 import { floorRender } from '../actions/mainGridRender';
 
 const ITEM_HEIGHT = 48;
@@ -12,6 +13,7 @@ const ITEM_HEIGHT = 48;
 class FloorButtons extends React.Component {
   state = {
     anchorEl: null,
+    floor: 1,
   };
 
   handleClick = event => {
@@ -19,12 +21,12 @@ class FloorButtons extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ anchorEl: null });
+    this.setState({ anchorEl: null, floor: 1 });
     this.props.floorRender('first floor');
   };
 
   handleCloseSecond = () => {
-    this.setState({ anchorEl: null });
+    this.setState({ anchorEl: null, floor: 2 });
     this.props.floorRender('second floor');
   };
 
@@ -40,7 +42,11 @@ class FloorButtons extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          <Room style={{ fontSize: '2em', color: 'red' }} />
+          {this.state.floor === 1 ? (
+            <Filter1 style={{ fontSize: '2em', color: 'red' }} />
+          ) : (
+            <Filter2 style={{ fontSize: '2em', color: 'red' }} />
+          )}
         </IconButton>
         <Menu
           id="long-menu"
