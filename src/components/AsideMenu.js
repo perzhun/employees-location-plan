@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Close from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
@@ -13,28 +13,71 @@ import AdminMode from './asideMenu/AdminMode';
 // the components is connected to the store to get the state of the toggle , it will then toggle accordingly
 // the close button dispatches an action to change the state to untoggled
 
-const AsideMenu = props => (
-  <aside className={props.menu.toggle ? 'aside-menu' : 'aside-menu--untoggled'}>
-    <div className="aside-menu__header">
-      <span>Search for an employee!</span>
-      <Close
-        onClick={() => {
-          props.dispatch(menuUntoggle());
-        }}
-        className="aside-menu__close"
-      />
-    </div>
-    <textarea placeholder="Search" className="aside-menu__search" />
-    <AdminMode />
-    {props.adminAuthenticated && (
-      <div>
-        <CustomizedSwitches />
-        <RadioButtonsGroup />
-        <RenderedSettings />
-      </div>
-    )}
-  </aside>
-);
+class AsideMenu extends Component {
+  state = {
+    inputText: '8',
+  };
+
+  HandleSearch = e => {
+    this.setState({ inputText: e.target.value });
+  };
+
+  render() {
+    let employeeSearch;
+    console.log(this.props.dummyData);
+    this.state.inputText === ''
+      ? null
+      : (employeeSearch = this.props.dummyData.map((person, index) => {
+          if (
+            person.name
+              .toUpperCase()
+              .indexOf(this.state.inputText.toUpperCase()) > -1
+          ) {
+            return (
+              <li key={index} className="aside-menu__item">
+                <span className="aside-menu__item__name">{person.name}</span>
+                <span
+                  className="aside-menu__photo"
+                  style={{ backgroundImage: `url(${person.photo})` }}
+                />
+              </li>
+            );
+          }
+        }));
+
+    return (
+      <aside
+        className={
+          this.props.menu.toggle ? 'aside-menu' : 'aside-menu--untoggled'
+        }
+      >
+        <div className="aside-menu__header">
+          <span>Search for an employee!</span>
+          <Close
+            onClick={() => {
+              this.props.dispatch(menuUntoggle());
+            }}
+            className="aside-menu__close"
+          />
+        </div>
+        <textarea
+          onChange={this.HandleSearch}
+          value={this.state.searchText}
+          className="aside-menu__search"
+        />
+        <ul className="aside-menu__list">{employeeSearch}</ul>
+        <AdminMode />
+        {this.props.adminAuthenticated && (
+          <div>
+            <CustomizedSwitches />
+            <RadioButtonsGroup />
+            <RenderedSettings />
+          </div>
+        )}
+      </aside>
+    );
+  }
+}
 
 AsideMenu.propTypes = {
   menu: PropTypes.object,
@@ -42,12 +85,14 @@ AsideMenu.propTypes = {
   toggle: PropTypes.bool,
   dispatch: PropTypes.func,
   adminAuthenticated: PropTypes.bool,
+  dummyData: PropTypes.array,
 };
 
 const mapStateToProps = state => {
   return {
     menu: state.menu,
     adminAuthenticated: state.menu.adminAuthenticated,
+    dummyData: state.employees.employees,
   };
 };
 

@@ -18,13 +18,7 @@ class SelectModal extends Component {
   HandleSearch = e => {
     this.setState({ searchText: e.target.value });
   };
-  handleSelectClick = name => {
-    this.props.dispatch(
-      choseEmployee({
-        name: name,
-        id: this.props.cellId,
-      }),
-    );
+  handleCloseModal = () => {
     this.props.dispatch(
       openSelected({
         selectedOpened: false,
@@ -34,6 +28,15 @@ class SelectModal extends Component {
         selectright: 0,
       }),
     );
+  };
+  handleSelectClick = name => {
+    this.props.dispatch(
+      choseEmployee({
+        name: name,
+        id: this.props.cellId,
+      }),
+    );
+    this.handleCloseModal();
   };
 
   handleEmployeeDelete = name => {
@@ -45,12 +48,13 @@ class SelectModal extends Component {
       content: {
         left: this.props.selectX + 10,
         top: this.props.selectY,
-        width: '200px',
+        width: '300px',
         right: 'none',
         bottom: 'none',
         overflow: 'hidden',
         position: 'absolute',
         padding: 0,
+        boxShadow: '3px 3px 3px 3px #888888',
       },
     };
     let employeeList;
@@ -83,11 +87,16 @@ class SelectModal extends Component {
         return (
           <li
             key={index}
+            className="employee-list__item"
             onClick={() => {
               this.handleSelectClick(person.name);
             }}
           >
-            <span>{person.name}</span>
+            <span className="employee-list__item__name">{person.name}</span>
+            <span
+              className="employee-list__photo"
+              style={{ backgroundImage: `url(${person.photo})` }}
+            />
           </li>
         );
       }
@@ -98,19 +107,14 @@ class SelectModal extends Component {
         ariaHideApp={false}
         shouldCloseOnOverlayClick={true}
         style={customModal}
-        onRequestClose={() =>
-          this.props.dispatch(
-            openSelected({
-              selectedOpened: false,
-              selectX: 0,
-              selectY: 0,
-              selectBottom: 0,
-              selectright: 0,
-            }),
-          )}
+        onRequestClose={this.handleCloseModal}
         contentLabel="Employee select"
       >
         <div className="modal__header">
+          <Clear
+            onClick={this.handleCloseModal}
+            className="header__close-modal"
+          />
           <h4>Assign an employee to this working place</h4>
         </div>
         <div className="modal__content">

@@ -37,11 +37,11 @@ class Employee extends Component {
             let eventBottom = e.nativeEvent.target.parentNode.getBoundingClientRect()
               .bottom;
             //let rect = ReactDOM.findDomNode().getBoundingClientRect();
-            if (eventX + 200 > window.innerWidth) {
+            if (eventX + 300 > window.innerWidth) {
               eventX =
                 eventX -
                 e.nativeEvent.target.parentNode.getBoundingClientRect().width -
-                220;
+                320;
             }
             if (eventY + 300 > window.innerHeight) {
               eventY = eventY - 300;
