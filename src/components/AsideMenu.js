@@ -7,6 +7,7 @@ import CustomizedSwitches from './asideMenu/EditSwitchButton';
 import RadioButtonsGroup from './asideMenu/EditRadioButtons';
 import RenderedSettings from './asideMenu/RenderedSettings';
 import AdminMode from './asideMenu/AdminMode';
+import { floorRender, searchEmployee } from '../actions/mainGridRender';
 //import '/react-input-range/lib/css/index.css';
 
 // toggable aside menu that contains a search function and a close button
@@ -22,9 +23,13 @@ class AsideMenu extends Component {
     this.setState({ inputText: e.target.value });
   };
 
+  handleEmployeeClick = (employee, floor) => {
+    this.props.floorRender(floor);
+    this.props.searchEmployee(employee);
+  };
+
   render() {
     let employeeSearch;
-    console.log(this.props.dummyData);
     this.state.inputText === ''
       ? null
       : (employeeSearch = this.props.dummyData.map((person, index) => {
@@ -34,7 +39,16 @@ class AsideMenu extends Component {
               .indexOf(this.state.inputText.toUpperCase()) > -1
           ) {
             return (
-              <li key={index} className="aside-menu__item">
+              <li
+                key={index}
+                className="aside-menu__item"
+                onClick={() => {
+                  let [matchedEmployee] = this.props.chosenEmployee.filter(
+                    el => el.name === person.name,
+                  );
+                  this.handleEmployeeClick(matchedEmployee.id, 'first floor');
+                }}
+              >
                 <span className="aside-menu__item__name">{person.name}</span>
                 <span
                   className="aside-menu__photo"
@@ -55,7 +69,7 @@ class AsideMenu extends Component {
           <span>Search for an employee!</span>
           <Close
             onClick={() => {
-              this.props.dispatch(menuUntoggle());
+              this.props.menuUntoggle();
             }}
             className="aside-menu__close"
           />
@@ -86,6 +100,9 @@ AsideMenu.propTypes = {
   dispatch: PropTypes.func,
   adminAuthenticated: PropTypes.bool,
   dummyData: PropTypes.array,
+  floorRender: PropTypes.func,
+  searchEmployee: PropTypes.func,
+  chosenEmployee: PropTypes.array,
 };
 
 const mapStateToProps = state => {
@@ -93,7 +110,22 @@ const mapStateToProps = state => {
     menu: state.menu,
     adminAuthenticated: state.menu.adminAuthenticated,
     dummyData: state.employees.employees,
+    chosenEmployee: state.employees.chosenEmployee,
   };
 };
 
-export default connect(mapStateToProps)(AsideMenu);
+const mapDispatchToProps = dispatch => {
+  return {
+    floorRender: floor => {
+      dispatch(floorRender(floor));
+    },
+    menuUntoggle: () => {
+      dispatch(menuUntoggle());
+    },
+    searchEmployee: employee => {
+      dispatch(searchEmployee(employee));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AsideMenu);

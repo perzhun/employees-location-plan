@@ -42,7 +42,7 @@ class FloorButtons extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          {this.state.floor === 1 ? (
+          {this.props.render === 'first floor' ? (
             <Filter1 style={{ fontSize: '2em', color: '#f50057' }} />
           ) : (
             <Filter2 style={{ fontSize: '2em', color: '#f50057' }} />
@@ -69,6 +69,17 @@ class FloorButtons extends React.Component {
   }
 }
 
+FloorButtons.propTypes = {
+  render: PropTypes.string,
+  floorRender: PropTypes.func,
+};
+
+const mapStateToProps = state => {
+  return {
+    render: state.render.render,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     floorRender: floor => {
@@ -77,4 +88,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(FloorButtons);
+export default connect(mapStateToProps, mapDispatchToProps)(FloorButtons);

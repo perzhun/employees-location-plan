@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { openSelected } from '../actions/mainGridRender';
+import { openSelected, openEmployeeModal } from '../actions/mainGridRender';
 
 class Employee extends Component {
   render() {
@@ -60,11 +60,33 @@ class Employee extends Component {
         }}
       >
         {personObject && (
-          <img
-            className="employee_circle"
-            src={personObject.photo}
-            alt="portrait"
-          />
+          <div
+            className="employee__div"
+            onClick={e => {
+              this.props.editingEnabled === false
+                ? this.props.dispatch(
+                    openEmployeeModal({
+                      modalOpened: true,
+                      employeeInfo: personObject,
+                      selectX:
+                        e.nativeEvent.target.parentNode.getBoundingClientRect()
+                          .left +
+                        e.nativeEvent.target.parentNode.getBoundingClientRect()
+                          .width,
+                      selectY: e.nativeEvent.target.parentNode.getBoundingClientRect()
+                        .top,
+                    }),
+                  )
+                : null;
+            }}
+          >
+            <img
+              className="employee__img"
+              src={personObject.photo}
+              alt="portrait"
+            />
+            <span className="employee__name">{personObject.name}</span>
+          </div>
         )}
       </div>
     );
@@ -81,6 +103,7 @@ Employee.propTypes = {
   selectBottom: PropTypes.number,
   chosenEmployee: PropTypes.array,
   settingsOptionEnabled: PropTypes.string,
+  editingEnabled: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
@@ -94,6 +117,7 @@ const mapStateToProps = state => {
     dummyData: state.employees.employees,
     chosenEmployee: state.employees.chosenEmployee,
     settingsOptionEnabled: state.menu.settingsOptionEnabled,
+    editingEnabled: state.menu.editingEnabled,
   };
 };
 

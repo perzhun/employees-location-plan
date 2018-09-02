@@ -1,58 +1,106 @@
 export default [
   {
     name: 'Hachem',
+    lastName: 'Jadaoui',
+    position: 'Junior front end',
+    note:
+      'Lorem ipsum dolor sit amet,' +
+      'consectetur adipiscing elit,' +
+      'sed do eiusmod tempor incididunt' +
+      'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
     photo: 'img/employee1.jpg',
-    place: 0,
   },
   {
     name: 'Alex',
+    lastName: 'Taranenko',
+    position: 'middle front end',
+    note:
+      'Lorem ipsum dolor sit amet,' +
+      'consectetur adipiscing elit,' +
+      'sed do eiusmod tempor incididunt' +
+      'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
     photo: 'img/employee2.jpg',
-    place: 3,
   },
   {
     name: 'Sergey',
+    lastName: 'Timtchinko',
+    position: 'Team lead',
+    note:
+      'Lorem ipsum dolor sit amet,' +
+      'consectetur adipiscing elit,' +
+      'sed do eiusmod tempor incididunt' +
+      'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
     photo: 'img/employee3.jpg',
-    place: 2,
   },
   {
     name: 'Andrei',
+    lastName: 'Andreeyev',
+    position: 'Senior back end',
+    note:
+      'Lorem ipsum dolor sit amet,' +
+      'consectetur adipiscing elit,' +
+      'sed do eiusmod tempor incididunt' +
+      'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
     photo: 'img/employee4.jpg',
-    place: 1,
   },
   {
     name: 'Katerina',
+    lastName: 'Smirnova',
+    position: 'Senior front end',
+    note:
+      'Lorem ipsum dolor sit amet,' +
+      'consectetur adipiscing elit,' +
+      'sed do eiusmod tempor incididunt' +
+      'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
     photo: 'img/employee1.jpg',
-    place: 4,
   },
   {
     name: 'Beth',
+    lastName: 'Green',
+    position: 'DevOps',
+    note:
+      'Lorem ipsum dolor sit amet,' +
+      'consectetur adipiscing elit,' +
+      'sed do eiusmod tempor incididunt' +
+      'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
     photo: 'img/employee2.jpg',
-    place: 6,
   },
   {
     name: 'Richard',
+    lastName: 'Lion',
+    position: 'Human resources',
+    note:
+      'Lorem ipsum dolor sit amet,' +
+      'consectetur adipiscing elit,' +
+      'sed do eiusmod tempor incididunt' +
+      'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
     photo: 'img/employee3.jpg',
-    place: 5,
   },
   {
     name: 'Bima',
+    lastName: 'Teema',
+    position: 'Office cat',
+    note:
+      'Lorem ipsum dolor sit amet,' +
+      'consectetur adipiscing elit,' +
+      'sed do eiusmod tempor incididunt' +
+      'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
     photo: 'img/employee3.jpg',
-    place: 5,
   },
 ];

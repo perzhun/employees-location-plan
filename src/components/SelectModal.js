@@ -111,13 +111,13 @@ class SelectModal extends Component {
         contentLabel="Employee select"
       >
         <div className="modal__header">
+          <h4>Assign an employee to this working place</h4>
+        </div>
+        <div className="modal__content">
           <Clear
             onClick={this.handleCloseModal}
             className="header__close-modal"
           />
-          <h4>Assign an employee to this working place</h4>
-        </div>
-        <div className="modal__content">
           <input
             type="text"
             className="modal__input"

@@ -13,11 +13,6 @@ export default (state = mainGridInitialState, action) => {
         ...state,
         render: action.payload,
       };
-    case 'SECOND_FLOOR':
-      return {
-        ...state,
-        render: action.render,
-      };
     default:
       return state;
   }

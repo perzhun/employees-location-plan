@@ -31,3 +31,13 @@ export const deleteEmployee = payload => ({
   type: 'DELETE_EMPLOYEE',
   payload,
 });
+
+export const searchEmployee = payload => ({
+  type: 'SEARCH_EMPLOYEE',
+  payload,
+});
+
+export const openEmployeeModal = payload => ({
+  type: 'OPEN_EMPLOYEE_MODAL',
+  payload,
+});

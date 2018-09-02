@@ -6,6 +6,7 @@ import styled from 'styled-components';
 //import classNames from 'classnames';
 import Employee from './Employee';
 import SelectModal from './SelectModal';
+import EmployeeModal from './EmployeeModal';
 import { addWorkPlace, removeWorkPlace } from '../actions/mainGridRender';
 
 /*
@@ -19,10 +20,15 @@ class FirstFloor extends Component {
   render() {
     const CustomGrid = styled.div`
       grid-template-rows: repeat(${this.props.gridRows}, 1fr);
-      grid-template-columns: repeat(${this.props.gridCollums}, 1fr);
+      grid-template-columns: repeat(${this.props.gridCollums * 3}, 1fr);
     `;
+
     let divCells = [];
-    for (let i = 0; i < this.props.gridRows * this.props.gridCollums; i++) {
+    for (
+      let i = 0;
+      i < this.props.gridRows * (this.props.gridCollums * 3);
+      i++
+    ) {
       divCells.push(
         <div
           className={this.props.gridEdit ? 'grid-cell' : 'grid-cell--unactive'}
@@ -38,7 +44,8 @@ class FirstFloor extends Component {
           {this.props.workPlace.indexOf(i) !== -1 && (
             <div
               className={
-                this.props.selectedOpened && this.props.cellId === i ? (
+                (this.props.selectedOpened && this.props.cellId === i) ||
+                this.props.searchedEmployee === i ? (
                   'grid-cell--selected'
                 ) : (
                   'grid-cell--active'
@@ -57,13 +64,13 @@ class FirstFloor extends Component {
           <CustomGrid className="first-floor">{divCells}</CustomGrid>
         </div>
         <SelectModal />
+        <EmployeeModal />
       </div>
     );
   }
 }
 
 FirstFloor.propTypes = {
-  dummyData: PropTypes.array,
   gridCollums: PropTypes.number,
   gridRows: PropTypes.number,
   gridEdit: PropTypes.bool,
@@ -72,11 +79,11 @@ FirstFloor.propTypes = {
   selectedOpened: PropTypes.bool,
   cellId: PropTypes.number,
   settingsOptionEnabled: PropTypes.string,
+  searchedEmployee: PropTypes.number,
 };
 
 const mapStateToProps = state => {
   return {
-    dummyData: state.employees.employees,
     gridCollums: state.grid.gridCollums,
     gridRows: state.grid.gridRows,
     gridEdit: state.grid.gridEdit,
@@ -86,6 +93,7 @@ const mapStateToProps = state => {
     selectY: state.grid.modalProps.selectY,
     cellId: state.grid.modalProps.cellId,
     settingsOptionEnabled: state.menu.settingsOptionEnabled,
+    searchedEmployee: state.employees.searchedEmployee,
   };
 };
 

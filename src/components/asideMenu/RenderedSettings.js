@@ -7,17 +7,17 @@ const RenderedSettings = props => {
   return (
     <div
       className={
-        props.settingsOptionEnabled !== ''
-          ? 'aside-menu__renderedSettings'
-          : null
+        props.settingsOptionEnabled !== '' ? (
+          'aside-menu__renderedSettings'
+        ) : null
       }
     >
       {props.editingEnabled &&
       props.settingsOptionEnabled === 'Grid settings' ? (
         <div>
           <input
-            min={10}
-            max={30}
+            min={4}
+            max={14}
             type="range"
             defaultValue={props.grid}
             className="slider"
@@ -62,7 +62,4 @@ RenderedSettings.propTypes = {
   editingEnabled: PropTypes.bool,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(RenderedSettings);
+export default connect(mapStateToProps, mapDispatchToProps)(RenderedSettings);
