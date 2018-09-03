@@ -15,9 +15,9 @@ const styles = () => ({
   colorSwitchBase: {
     color: '#D7ECCA',
     '&$colorChecked': {
-      color: '#7EFF33',
+      color: 'rgb(245, 0, 87)',
       '& + $colorBar': {
-        backgroundColor: '#7EFF33',
+        backgroundColor: 'rgb(245, 0, 87)',
       },
     },
   },
