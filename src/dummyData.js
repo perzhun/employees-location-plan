@@ -27,7 +27,7 @@ export default [
   },
   {
     name: 'Sergey',
-    lastName: 'Timtchinko',
+    lastName: 'Andreevish Timtchinko',
     position: 'Team lead',
     note:
       'Lorem ipsum dolor sit amet,' +

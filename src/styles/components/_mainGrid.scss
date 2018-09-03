@@ -33,6 +33,10 @@
       display: table;
       height: 100%;
     }
+    @media (max-height: 450px) {
+      display: flex;
+      justify-content: center;
+    }
 
     .main-grid-wrapper {
       vertical-align: middle;
@@ -44,6 +48,10 @@
         vertical-align: middle;
         margin-top: 5em;
         width: 200vw;
+      }
+      @media (max-height: 450px) {
+        width: 80%;
+        padding-top: 45%;
       }
       @media (min-width: 1900px) {
         margin-top: 5em;

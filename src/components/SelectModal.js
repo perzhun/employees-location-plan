@@ -44,17 +44,25 @@ class SelectModal extends Component {
   };
 
   render() {
+    let modalWidth;
+    if ((window.innerWidth || window.innerHeight) < 600) {
+      modalWidth = '200px';
+    } else {
+      modalWidth = '300px';
+    }
+
     const customModal = {
       content: {
         left: this.props.selectX + 10,
         top: this.props.selectY,
-        width: '300px',
+        width: modalWidth,
         right: 'none',
         bottom: 'none',
         overflow: 'hidden',
         position: 'absolute',
         padding: 0,
         boxShadow: '3px 3px 3px 3px #888888',
+        zIndex: 3,
       },
     };
     let employeeList;

@@ -38,13 +38,15 @@ class Employee extends Component {
               .bottom;
             //let rect = ReactDOM.findDomNode().getBoundingClientRect();
             if (eventX + 300 > window.innerWidth) {
+              let differenceX = window.innerWidth < 600 ? 220 : 320;
               eventX =
                 eventX -
                 e.nativeEvent.target.parentNode.getBoundingClientRect().width -
-                320;
+                differenceX;
             }
             if (eventY + 300 > window.innerHeight) {
-              eventY = eventY - 300;
+              let differenceY = window.innerHeight < 600 ? 150 : 300;
+              eventY = eventY - differenceY;
             }
             this.props.dispatch(
               openSelected({
@@ -63,18 +65,28 @@ class Employee extends Component {
           <div
             className="employee__div"
             onClick={e => {
+              let selectX =
+                e.nativeEvent.target.parentNode.getBoundingClientRect().left +
+                e.nativeEvent.target.parentNode.getBoundingClientRect().width;
+              let selectY = e.nativeEvent.target.parentNode.getBoundingClientRect()
+                .top;
+              if (selectX + 300 > window.innerWidth) {
+                selectX =
+                  selectX -
+                  e.nativeEvent.target.parentNode.getBoundingClientRect()
+                    .width -
+                  320;
+              }
+              if (selectY + 300 > window.innerHeight) {
+                selectY = selectY - 300;
+              }
               this.props.editingEnabled === false
                 ? this.props.dispatch(
                     openEmployeeModal({
                       modalOpened: true,
                       employeeInfo: personObject,
-                      selectX:
-                        e.nativeEvent.target.parentNode.getBoundingClientRect()
-                          .left +
-                        e.nativeEvent.target.parentNode.getBoundingClientRect()
-                          .width,
-                      selectY: e.nativeEvent.target.parentNode.getBoundingClientRect()
-                        .top,
+                      selectX: selectX,
+                      selectY: selectY,
                     }),
                   )
                 : null;

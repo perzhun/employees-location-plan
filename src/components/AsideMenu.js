@@ -33,10 +33,10 @@ class AsideMenu extends Component {
     this.state.inputText === ''
       ? null
       : (employeeSearch = this.props.dummyData.map((person, index) => {
+          let fullName = person.name.concat(' ', person.lastName);
           if (
-            person.name
-              .toUpperCase()
-              .indexOf(this.state.inputText.toUpperCase()) > -1
+            fullName.toUpperCase().indexOf(this.state.inputText.toUpperCase()) >
+            -1
           ) {
             return (
               <li
@@ -49,7 +49,7 @@ class AsideMenu extends Component {
                   this.handleEmployeeClick(matchedEmployee.id, 'first floor');
                 }}
               >
-                <span className="aside-menu__item__name">{person.name}</span>
+                <span className="aside-menu__item__name">{fullName}</span>
                 <span
                   className="aside-menu__photo"
                   style={{ backgroundImage: `url(${person.photo})` }}
