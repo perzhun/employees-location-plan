@@ -80,12 +80,13 @@ class Employee extends Component {
                 : null;
             }}
           >
-            <img
+            <div
               className="employee__img"
-              src={personObject.photo}
-              alt="portrait"
+              style={{
+                backgroundImage: `url(${personObject.photo})`,
+              }}
             />
-            <span className="employee__name">{personObject.name}</span>
+            {/*<span className="employee__name">{personObject.name}</span>*/}
           </div>
         )}
       </div>

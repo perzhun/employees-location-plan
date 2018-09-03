@@ -21,6 +21,7 @@ class FirstFloor extends Component {
     const CustomGrid = styled.div`
       grid-template-rows: repeat(${this.props.gridRows}, 1fr);
       grid-template-columns: repeat(${this.props.gridCollums * 3}, 1fr);
+      grid-gap: calc(2.5em * (1 / ${this.props.gridRows}));
     `;
 
     let divCells = [];
@@ -45,11 +46,9 @@ class FirstFloor extends Component {
             <div
               className={
                 (this.props.selectedOpened && this.props.cellId === i) ||
-                this.props.searchedEmployee === i ? (
-                  'grid-cell--selected'
-                ) : (
-                  'grid-cell--active'
-                )
+                this.props.searchedEmployee === i
+                  ? 'grid-cell--selected'
+                  : 'grid-cell--active'
               }
             >
               <Employee employeeKey={i} />

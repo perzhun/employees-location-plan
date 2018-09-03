@@ -29,7 +29,7 @@
     display: flex;
     align-items: center;
 
-    @media (max-width: 767px) {
+    @media (max-width: 600px) {
       display: table;
       height: 100%;
     }
@@ -40,7 +40,8 @@
       width: 100%;
       position: relative;
 
-      @media (max-width: 767px) {
+      @media (max-width: 600px) {
+        vertical-align: middle;
         margin-top: 5em;
         width: 200vw;
       }

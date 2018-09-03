@@ -74,12 +74,15 @@ class AsideMenu extends Component {
             className="aside-menu__close"
           />
         </div>
-        <textarea
-          onChange={this.HandleSearch}
-          value={this.state.searchText}
-          className="aside-menu__search"
-        />
-        <ul className="aside-menu__list">{employeeSearch}</ul>
+        <div className="aside-menu__search-container">
+          <input
+            type="text"
+            onChange={this.HandleSearch}
+            value={this.state.searchText}
+            className="aside-menu__search"
+          />
+          <ul className="aside-menu__list">{employeeSearch}</ul>
+        </div>
         <AdminMode />
         {this.props.adminAuthenticated && (
           <div>
@@ -128,4 +131,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AsideMenu);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AsideMenu);
