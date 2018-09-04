@@ -6,10 +6,9 @@ import { openSelected, openEmployeeModal } from '../actions/mainGridRender';
 class Employee extends Component {
   render() {
     let chosenPerson = this.props.chosenEmployee.filter(
-      el => el.id === this.props.employeeKey,
+      el => el.id === this.props.employeeKey && el.floor === this.props.floor,
     );
     let [chosenPersonObject] = chosenPerson;
-
     let employeeArray = [];
     let personObject;
     if (chosenPersonObject) {
@@ -48,16 +47,14 @@ class Employee extends Component {
               let differenceY = window.innerHeight < 600 ? 150 : 300;
               eventY = eventY - differenceY;
             }
-            this.props.dispatch(
-              openSelected({
-                selectedOpened: true,
-                selectX: eventX,
-                selectY: eventY,
-                selectBottom: eventBottom,
-                selectRight: eventRight,
-                cellId: this.props.employeeKey,
-              }),
-            );
+            this.props.openSelected({
+              selectedOpened: true,
+              selectX: eventX,
+              selectY: eventY,
+              selectBottom: eventBottom,
+              selectRight: eventRight,
+              cellId: this.props.employeeKey,
+            });
           }
         }}
       >
@@ -81,14 +78,12 @@ class Employee extends Component {
                 selectY = selectY - 300;
               }
               this.props.editingEnabled === false
-                ? this.props.dispatch(
-                    openEmployeeModal({
-                      modalOpened: true,
-                      employeeInfo: personObject,
-                      selectX: selectX,
-                      selectY: selectY,
-                    }),
-                  )
+                ? this.props.openEmployeeModal({
+                    modalOpened: true,
+                    employeeInfo: personObject,
+                    selectX: selectX,
+                    selectY: selectY,
+                  })
                 : null;
             }}
           >
@@ -117,6 +112,11 @@ Employee.propTypes = {
   chosenEmployee: PropTypes.array,
   settingsOptionEnabled: PropTypes.string,
   editingEnabled: PropTypes.bool,
+  floor: PropTypes.string,
+  openSelected: PropTypes.func,
+  openEmployeeModal: PropTypes.func,
+  dummyData: PropTypes.array,
+  employeeKey: PropTypes.number,
 };
 
 const mapStateToProps = state => {
@@ -131,7 +131,22 @@ const mapStateToProps = state => {
     chosenEmployee: state.employees.chosenEmployee,
     settingsOptionEnabled: state.menu.settingsOptionEnabled,
     editingEnabled: state.menu.editingEnabled,
+    floor: state.render.render,
   };
 };
 
-export default connect(mapStateToProps)(Employee);
+const mapDispatchToProps = dispatch => {
+  return {
+    openEmployeeModal: payload => {
+      dispatch(openEmployeeModal(payload));
+    },
+    openSelected: payload => {
+      dispatch(openSelected(payload));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Employee);

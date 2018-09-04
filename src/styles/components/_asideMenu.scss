@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import "./base/variables";
 
 .aside-menu__header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 1em;
-  border-bottom: 1px solid #918f9e;
+  border-bottom: 1px solid $light-grey;
   color: white;
   font-weight: bold;
 
@@ -21,7 +21,7 @@
   width: 80%;
   margin-top: 2em;
   margin-left: 10%;
-  background-color: #5c5b62;
+  background-color: $middle-grey;
 }
 
 .aside-menu__search {
@@ -29,7 +29,7 @@
   border: none;
   outline: none;
   resize: none;
-  background: #918f9e;
+  background: $light-grey;
   color: white;
   padding: 0.5em;
   width: 100%;
@@ -48,9 +48,7 @@
   max-height: 50%;
 
   li {
-    background-color: #918f9e;
-    /*box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.2),
-      0px 7px 11px 0px rgba(0, 0, 0, 0.14), 0px 2px 19px 0px rgba(0, 0, 0, 0.12);*/
+    background-color: $light-grey;
     color: white;
     padding: 5px 16px;
     margin-top: 0.2em;
@@ -80,9 +78,7 @@
       background-size: cover;
       background-repeat: no-repeat;
       border-radius: 5px;
-      box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.2),
-        0px 7px 11px 0px rgba(0, 0, 0, 0.14),
-        0px 2px 19px 0px rgba(0, 0, 0, 0.12);
+      box-shadow: $light-box-shadow;
     }
   }
 }
@@ -92,9 +88,8 @@
   width: 80%;
   margin: 0 auto;
   padding: 5%;
-  background-color: rgb(255, 89, 131);
-  box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.2),
-    0px 7px 11px 0px rgba(0, 0, 0, 0.14), 0px 2px 19px 0px rgba(0, 0, 0, 0.12);
+  background-color: $ligt-red;
+  box-shadow: $light-box-shadow;
   border-radius: 10px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   p {
@@ -121,14 +116,14 @@
       width: 25px;
       height: 25px;
       border-radius: 50%;
-      background: rgb(187, 0, 47);
+      background: $strong-red;
       cursor: pointer;
     }
     &::-moz-range-thumb {
       width: 25px;
       height: 25px;
       border-radius: 50%;
-      background: rgb(245, 0, 87);
+      background: $strong-red;
       cursor: pointer;
     }
   }

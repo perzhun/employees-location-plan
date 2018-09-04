@@ -37,8 +37,8 @@ class FirstFloor extends Component {
           onClick={() => {
             if (this.props.settingsOptionEnabled === 'Work place settings') {
               this.props.workPlace.indexOf(i) !== -1
-                ? this.props.dispatch(removeWorkPlace(i))
-                : this.props.dispatch(addWorkPlace(i));
+                ? this.props.removeWorkPlace(i)
+                : this.props.addWorkPlace(i);
             }
           }}
         >
@@ -79,6 +79,8 @@ FirstFloor.propTypes = {
   cellId: PropTypes.number,
   settingsOptionEnabled: PropTypes.string,
   searchedEmployee: PropTypes.number,
+  addWorkPlace: PropTypes.func,
+  removeWorkPlace: PropTypes.func,
 };
 
 const mapStateToProps = state => {
@@ -96,4 +98,18 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(FirstFloor);
+const mapDispatchToProps = dispatch => {
+  return {
+    removeWorkPlace: id => {
+      dispatch(removeWorkPlace(id));
+    },
+    addWorkPlace: id => {
+      dispatch(addWorkPlace(id));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(FirstFloor);

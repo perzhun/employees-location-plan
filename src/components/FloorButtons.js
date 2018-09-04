@@ -43,9 +43,9 @@ class FloorButtons extends React.Component {
           onClick={this.handleClick}
         >
           {this.props.render === 'first floor' ? (
-            <Filter1 style={{ fontSize: '2em', color: '#f50057' }} />
+            <Filter1 style={{ fontSize: '2em', color: '#9c4dcc' }} />
           ) : (
-            <Filter2 style={{ fontSize: '2em', color: '#f50057' }} />
+            <Filter2 style={{ fontSize: '2em', color: '#9c4dcc' }} />
           )}
         </IconButton>
         <Menu
@@ -88,4 +88,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FloorButtons);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(FloorButtons);

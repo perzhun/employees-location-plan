@@ -6,6 +6,7 @@ const gridDataInitialState = {
   gridRows: gridData.gridRows,
   gridEdit: false,
   workPlace: [],
+  secondFloorWorkPlace: [],
   modalProps: {
     selectedOpened: false,
     selectX: 0,
@@ -38,6 +39,18 @@ export default (state = gridDataInitialState, action) => {
       return {
         ...state,
         workPlace: state.workPlace.filter(place => place !== action.payload),
+      };
+    case 'ADD_WORK_PLACE_SECOND':
+      return {
+        ...state,
+        secondFloorWorkPlace: [...state.secondFloorWorkPlace, action.payload],
+      };
+    case 'REMOVE_WORK_PLACE_SECOND':
+      return {
+        ...state,
+        secondFloorWorkPlace: state.secondFloorWorkPlace.filter(
+          place => place !== action.payload,
+        ),
       };
     case 'OPEN_SELECT':
       return {

@@ -24,7 +24,7 @@ const MainGrid = props => (
           : 'home__menu-button--active'
       }
       onClick={() => {
-        props.dispatch(menuToggle());
+        props.menuToggle();
       }}
     />
     <div className="main-grid-buttons">
@@ -63,4 +63,15 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(MainGrid);
+const mapDispatchToProps = dispatch => {
+  return {
+    menuToggle: () => {
+      dispatch(menuToggle());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MainGrid);

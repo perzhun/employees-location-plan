@@ -22,6 +22,12 @@ const styles = theme => ({
   label: {
     color: 'white',
   },
+  radio: {
+    '&$checked': {
+      color: '#9c4dcc',
+    },
+  },
+  checked: {},
 });
 
 class RadioButtonsGroup extends React.Component {
@@ -43,7 +49,7 @@ class RadioButtonsGroup extends React.Component {
   };
 
   UNSAFE_componentWillReceiveProps() {
-    if (!this.props.editingEnabled) {
+    if (this.props.editingEnabled === false) {
       this.setState({ value: '' });
     }
   }
@@ -62,7 +68,16 @@ class RadioButtonsGroup extends React.Component {
           >
             <FormControlLabel
               value="Grid settings"
-              control={<Radio />}
+              control={
+                <Radio
+                  classes={{ root: classes.radio, checked: classes.checked }}
+                  checked={
+                    this.props.settingsOptionEnabled === 'Grid settings'
+                      ? true
+                      : false
+                  }
+                />
+              }
               label="Grid settings"
               disabled={!this.props.editingEnabled}
               classes={{
@@ -71,7 +86,16 @@ class RadioButtonsGroup extends React.Component {
             />
             <FormControlLabel
               value="Work place settings"
-              control={<Radio />}
+              control={
+                <Radio
+                  classes={{ root: classes.radio, checked: classes.checked }}
+                  checked={
+                    this.props.settingsOptionEnabled === 'Work place settings'
+                      ? true
+                      : false
+                  }
+                />
+              }
               label="Work place settings"
               disabled={!this.props.editingEnabled}
               classes={{
@@ -80,7 +104,17 @@ class RadioButtonsGroup extends React.Component {
             />
             <FormControlLabel
               value="Employee location settings"
-              control={<Radio />}
+              control={
+                <Radio
+                  classes={{ root: classes.radio, checked: classes.checked }}
+                  checked={
+                    this.props.settingsOptionEnabled ===
+                    'Employee location settings'
+                      ? true
+                      : false
+                  }
+                />
+              }
               label="Employee location settings"
               disabled={!this.props.editingEnabled}
               classes={{
@@ -99,11 +133,13 @@ RadioButtonsGroup.propTypes = {
   editingEnabled: PropTypes.bool,
   settingsOption: PropTypes.func,
   activateGrid: PropTypes.func,
+  settingsOptionEnabled: PropTypes.string,
 };
 
 const mapStateToProps = state => {
   return {
     editingEnabled: state.menu.editingEnabled,
+    settingsOptionEnabled: state.menu.settingsOptionEnabled,
   };
 };
 

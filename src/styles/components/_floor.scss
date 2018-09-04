@@ -1,8 +1,17 @@
 @import "./base/mixins";
+@import "./base/variables";
 
 .first-floor {
-  display: grid;
   background: url("/img/first-floor.png") no-repeat;
+}
+
+.second-floor {
+  background: url("/img/second-floor.png") no-repeat;
+}
+
+.first-floor,
+.second-floor {
+  display: grid;
   background-size: 100% 100%;
   position: absolute;
   top: 0;
@@ -23,11 +32,6 @@
     cursor: pointer;
     text-align: center;
     vertical-align: middle;
-    /*
-    @media (max-width: 767px) {
-      transform: rotate(-90deg);
-    }
-    */
   }
 
   .grid-call--unactive {
@@ -41,11 +45,10 @@
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    border: 1px solid #333238;
+    border: 1px solid $dark-grey;
     position: relative;
     cursor: pointer;
-    box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.2),
-      0px 7px 11px 0px rgba(0, 0, 0, 0.14), 0px 2px 19px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: $light-box-shadow;
 
     &:hover {
       box-shadow: none;
@@ -63,6 +66,6 @@
   }
   .grid-cell--selected {
     @extend .grid-cell--active;
-    border: 1px solid rgb(187, 0, 47);
+    border: 2px solid $ligt-red;
   }
 }

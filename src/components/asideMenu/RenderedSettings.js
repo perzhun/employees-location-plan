@@ -7,9 +7,9 @@ const RenderedSettings = props => {
   return (
     <div
       className={
-        props.settingsOptionEnabled !== '' ? (
-          'aside-menu__renderedSettings'
-        ) : null
+        props.settingsOptionEnabled !== ''
+          ? 'aside-menu__renderedSettings'
+          : null
       }
     >
       {props.editingEnabled &&
@@ -62,4 +62,7 @@ RenderedSettings.propTypes = {
   editingEnabled: PropTypes.bool,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RenderedSettings);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RenderedSettings);

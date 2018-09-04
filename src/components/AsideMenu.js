@@ -46,7 +46,10 @@ class AsideMenu extends Component {
                   let [matchedEmployee] = this.props.chosenEmployee.filter(
                     el => el.name === person.name,
                   );
-                  this.handleEmployeeClick(matchedEmployee.id, 'first floor');
+                  this.handleEmployeeClick(
+                    matchedEmployee.id,
+                    matchedEmployee.floor,
+                  );
                 }}
               >
                 <span className="aside-menu__item__name">{fullName}</span>

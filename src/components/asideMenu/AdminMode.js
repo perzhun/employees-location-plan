@@ -16,9 +16,9 @@ const styles = () => ({
   colorSwitchBase: {
     color: '#D7ECCA',
     '&$colorChecked': {
-      color: 'rgb(245, 0, 87)',
+      color: '#9c4dcc',
       '& + $colorBar': {
-        backgroundColor: 'rgb(245, 0, 87)',
+        backgroundColor: '#38006b',
       },
     },
   },
@@ -39,11 +39,6 @@ class AdminMode extends React.Component {
     let enable = event.target.checked;
     this.setState({ [name]: enable });
     this.props.adminLogin(enable);
-    /*this.props.EnableEditing(enable);
-    if (enable === false) {
-      this.props.activateGrid(enable);
-    }
-    this.props.settingsOption('');*/
   };
 
   render() {
@@ -91,24 +86,13 @@ const mapDispatchToProps = dispatch => {
       }
       dispatch(settingsOption(''));
     },
-    /*
-    adminAuth: enabled => {
-      dispatch(adminAuth(enabled));
-    },
-    EnableEditing: enabled => {
-      dispatch(EnableEditing(enabled));
-    },
-    settingsOption: option => {
-      dispatch(settingsOption(option));
-    },
-    activateGrid: enabled => {
-      dispatch(activateGrid(enabled));
-    },
-    */
   };
 };
 
 export default compose(
   withStyles(styles, { name: 'AdminMode' }),
-  connect(null, mapDispatchToProps),
+  connect(
+    null,
+    mapDispatchToProps,
+  ),
 )(AdminMode);

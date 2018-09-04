@@ -9,14 +9,12 @@ Modal.defaultStyles.overlay.backgroundColor = 'none';
 
 class EmployeeModal extends Component {
   handleCloseEmployeeModal = () => {
-    this.props.dispatch(
-      openEmployeeModal({
-        modalOpened: false,
-        employeeInfo: {},
-        selectX: 0,
-        selectY: 0,
-      }),
-    );
+    this.props.openEmployeeModal({
+      modalOpened: false,
+      employeeInfo: {},
+      selectX: 0,
+      selectY: 0,
+    });
   };
 
   render() {
@@ -76,6 +74,7 @@ EmployeeModal.propTypes = {
   selectX: PropTypes.number,
   selectY: PropTypes.number,
   employeeInfo: PropTypes.object,
+  openEmployeeModal: PropTypes.func,
 };
 
 const mapStateToProps = state => {
@@ -87,4 +86,15 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(EmployeeModal);
+const mapDispatchToProps = dispatch => {
+  return {
+    openEmployeeModal: payload => {
+      dispatch(openEmployeeModal(payload));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EmployeeModal);

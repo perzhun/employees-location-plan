@@ -19,28 +19,25 @@ class SelectModal extends Component {
     this.setState({ searchText: e.target.value });
   };
   handleCloseModal = () => {
-    this.props.dispatch(
-      openSelected({
-        selectedOpened: false,
-        selectX: 0,
-        selectY: 0,
-        selectBottom: 0,
-        selectright: 0,
-      }),
-    );
+    this.props.openSelected({
+      selectedOpened: false,
+      selectX: 0,
+      selectY: 0,
+      selectBottom: 0,
+      selectright: 0,
+    });
   };
   handleSelectClick = name => {
-    this.props.dispatch(
-      choseEmployee({
-        name: name,
-        id: this.props.cellId,
-      }),
-    );
+    this.props.choseEmployee({
+      name: name,
+      id: this.props.cellId,
+      floor: this.props.floor,
+    });
     this.handleCloseModal();
   };
 
   handleEmployeeDelete = name => {
-    this.props.dispatch(deleteEmployee(name));
+    this.props.deleteEmployee(name);
   };
 
   render() {
@@ -69,7 +66,7 @@ class SelectModal extends Component {
     let filterById = [];
     if (this.props.chosenEmployee.length > 0) {
       filterById = this.props.chosenEmployee.filter(
-        el => el.id === this.props.cellId,
+        el => el.id === this.props.cellId && el.floor === this.props.floor,
       );
     }
     let filteredPerson;
@@ -162,6 +159,10 @@ SelectModal.propTypes = {
   cellId: PropTypes.number,
   selectBottom: PropTypes.number,
   selectRight: PropTypes.number,
+  floor: PropTypes.string,
+  deleteEmployee: PropTypes.func,
+  openSelected: PropTypes.func,
+  choseEmployee: PropTypes.func,
 };
 
 const mapStateToProps = state => {
@@ -174,7 +175,25 @@ const mapStateToProps = state => {
     selectBottom: state.grid.modalProps.selectBottom,
     selectRight: state.grid.modalProps.selectRight,
     cellId: state.grid.modalProps.cellId,
+    floor: state.render.render,
   };
 };
 
-export default connect(mapStateToProps)(SelectModal);
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteEmployee: name => {
+      dispatch(deleteEmployee(name));
+    },
+    openSelected: payload => {
+      dispatch(openSelected(payload));
+    },
+    choseEmployee: payload => {
+      dispatch(choseEmployee(payload));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SelectModal);

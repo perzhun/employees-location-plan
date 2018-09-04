@@ -12,8 +12,18 @@ export const addWorkPlace = payload => ({
   payload,
 });
 
+export const addWorkPlaceSecond = payload => ({
+  type: 'ADD_WORK_PLACE_SECOND',
+  payload,
+});
+
 export const removeWorkPlace = payload => ({
   type: 'REMOVE_WORK_PLACE',
+  payload,
+});
+
+export const removeWorkPlaceSecond = payload => ({
+  type: 'REMOVE_WORK_PLACE_SECOND',
   payload,
 });
 

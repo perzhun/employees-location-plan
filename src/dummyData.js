@@ -49,7 +49,7 @@ export default [
       'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
-    photo: 'img/employee4.jpg',
+    photo: 'img/employee5.jpeg',
   },
   {
     name: 'Katerina',
@@ -62,7 +62,7 @@ export default [
       'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
-    photo: 'img/employee1.jpg',
+    photo: 'img/employee6.jpeg',
   },
   {
     name: 'Beth',
@@ -75,7 +75,7 @@ export default [
       'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
-    photo: 'img/employee2.jpg',
+    photo: 'img/employee4.jpg',
   },
   {
     name: 'Richard',
@@ -88,7 +88,7 @@ export default [
       'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
-    photo: 'img/employee3.jpg',
+    photo: 'img/employee7.jpeg',
   },
   {
     name: 'Bima',
@@ -101,6 +101,6 @@ export default [
       'ut labore et dolore magna aliqua. ',
     floor: 'first',
     room: 'first',
-    photo: 'img/employee3.jpg',
+    photo: 'img/employee8.jpeg',
   },
 ];
