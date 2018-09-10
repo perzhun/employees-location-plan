@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import configureStore from './store';
-import HomePage from './components/HomePage';
-import './styles/app.scss';
+const express = require('express');
+const bodyParser = require('body-parser');
+//const cors = require('cors');
+const morgan = require('morgan');
+const {sequelize} = require('./models');
+const config = require('./config/config');
 
-const store = configureStore();
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <React.Fragment>
-        <HomePage />
-      </React.Fragment>
-    </Provider>
-  );
-};
+const app = express();
 
-export default App;
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+//app.use(cors());
 
-ReactDOM.render(<App />, document.getElementById('app'));
+require('./routes')(app);
+
+sequelize.sync().then(() => {
+    app.listen(config.port);
+    console.log(`server started on port ${config.port}`);
+})
+
+

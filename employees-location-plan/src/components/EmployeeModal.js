@@ -44,15 +44,14 @@ class EmployeeModal extends Component {
           <div
             className="employee-modal__img"
             style={{
-              backgroundImage: `url(${
-                this.props.modalOpened ? this.props.employeeInfo.photo : ''
-              })`,
+              backgroundImage: `url(${this.props.modalOpened
+                ? this.props.employeeInfo.photo
+                : ''})`,
             }}
           />
           <div className="employee-modal__headings">
-            <h4>{`${this.props.employeeInfo.name} ${
-              this.props.employeeInfo.lastName
-            }`}</h4>
+            <h4>{`${this.props.employeeInfo.name} ${this.props.employeeInfo
+              .lastName}`}</h4>
             <h5>{this.props.employeeInfo.position}</h5>
           </div>
         </div>
@@ -94,7 +93,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(EmployeeModal);
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeModal);

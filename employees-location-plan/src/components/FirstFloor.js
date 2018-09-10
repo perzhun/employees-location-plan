@@ -46,9 +46,11 @@ class FirstFloor extends Component {
             <div
               className={
                 (this.props.selectedOpened && this.props.cellId === i) ||
-                this.props.searchedEmployee === i
-                  ? 'grid-cell--selected'
-                  : 'grid-cell--active'
+                this.props.searchedEmployee === i ? (
+                  'grid-cell--selected'
+                ) : (
+                  'grid-cell--active'
+                )
               }
             >
               <Employee employeeKey={i} />
@@ -109,7 +111,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(FirstFloor);
+export default connect(mapStateToProps, mapDispatchToProps)(FirstFloor);

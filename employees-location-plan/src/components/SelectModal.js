@@ -193,7 +193,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SelectModal);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectModal);
