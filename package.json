@@ -4,19 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/app.js "
+    "client-insall": "npm install --prefix client",
+    "server": "nodemon src/app.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
     "cors": "^2.8.4",
     "eslint": "^5.5.0",
     "express": "^4.16.3",
     "morgan": "^1.9.0",
     "nodemon": "^1.18.4",
     "sequelize": "^4.8.0",
+    "sequelize-fixtures": "^0.7.0",
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {}

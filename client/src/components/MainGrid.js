@@ -19,9 +19,11 @@ const MainGrid = props => (
   <section className={props.menu.toggle ? 'main-grid' : 'main-grid--untoggled'}>
     <Menu
       className={
-        props.menu.toggle
-          ? 'home__menu-button--hidden'
-          : 'home__menu-button--active'
+        props.menu.toggle ? (
+          'home__menu-button--hidden'
+        ) : (
+          'home__menu-button--active'
+        )
       }
       onClick={() => {
         props.menuToggle();
@@ -71,7 +73,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(MainGrid);
+export default connect(mapStateToProps, mapDispatchToProps)(MainGrid);
