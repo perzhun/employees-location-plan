@@ -1,0 +1,34 @@
+@import "./base/variables";
+
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+  .aside-menu {
+    height: 100%;
+    width: 50%;
+    border-right: 1px solid black;
+    background: $dark-grey;
+    text-align: center;
+    z-index: 2;
+    overflow-x: hidden;
+    -webkit-transition: width 0.5s;
+    transition: width 0.5s;
+
+    @media (min-width: 1024px) {
+      width: 20%;
+    }
+  }
+
+  .aside-menu--untoggled {
+    /*display: none;*/
+    @extend .aside-menu;
+    border: none;
+    width: 0%;
+  }
+}

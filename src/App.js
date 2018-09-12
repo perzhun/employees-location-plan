@@ -1,24 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import configureStore from './store';
-import HomePage from './components/HomePage';
-import './styles/app.scss';
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const morgan = require("morgan");
+const { sequelize } = require("./models");
+const config = require("./config/config");
+let fixturesLoader = require(__dirname + "/fixtures/EmployeesFixtures.js");
 
-const store = configureStore();
+const app = express();
 
-console.log(store.getState());
+app.use(morgan("combined"));
+app.use(bodyParser.json());
+app.use(cors());
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <React.Fragment>
-        <HomePage />
-      </React.Fragment>
-    </Provider>
-  );
-};
+require("./routes")(app);
 
-export default App;
+// const fixtures = require("./fixtures/EmployeesData");
 
-ReactDOM.render(<App />, document.getElementById('app'));
+sequelize.sync().then(() => {
+  app.listen(config.port);
+  console.log(`server started on port ${config.port}`);
+  fixturesLoader.loadFixtures();
+});

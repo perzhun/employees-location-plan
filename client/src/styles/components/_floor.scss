@@ -1,0 +1,71 @@
+@import "./base/mixins";
+@import "./base/variables";
+
+.first-floor {
+  background: url("/img/first-floor.png") no-repeat;
+}
+
+.second-floor {
+  background: url("/img/second-floor.png") no-repeat;
+}
+
+.first-floor,
+.second-floor {
+  display: grid;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  max-height: 80%;
+  //grid-gap: 0.5em;
+
+  @media (max-width: 1023px) {
+    overflow: hidden;
+    max-height: 100%;
+  }
+
+  .grid-cell {
+    border: 0.2px solid #e3e3e3;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .grid-call--unactive {
+    @extend .grid-cell;
+    border: none;
+    cursor: none;
+  }
+
+  .grid-cell--active {
+    /*@extend .grid-cell;*/
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    border: 1px solid $dark-grey;
+    position: relative;
+    cursor: pointer;
+    box-shadow: $light-box-shadow;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    .grid-cell__text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      vertical-align: middle;
+      overflow: hidden;
+    }
+  }
+  .grid-cell--selected {
+    @extend .grid-cell--active;
+    border: 2px solid $ligt-red;
+  }
+}

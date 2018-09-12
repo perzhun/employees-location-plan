@@ -1,0 +1,15 @@
+@import "./components/homePage";
+@import "./components/asideMenu";
+@import "./components/mainGrid";
+@import "./components/floor";
+@import "./components/employee";
+@import "./components/modal";
+@import "./components/employeeModal";
+/*
+main scss file that combines all other files and compiles to css
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+}

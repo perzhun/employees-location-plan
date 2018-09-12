@@ -1,9 +1,0 @@
-@import "./base/mixins";
-
-.second-floor {
-  display: grid;
-  height: 100%;
-  grid-template-rows: repeat(10, 1fr);
-  grid-template-columns: repeat(8, 1fr);
-  border: 2px double black;
-}

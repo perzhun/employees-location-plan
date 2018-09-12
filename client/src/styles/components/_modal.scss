@@ -1,0 +1,97 @@
+@import "./base/variables";
+
+.header__close-modal {
+  color: white;
+  background: $strong-red;
+  padding: 2%;
+  border-radius: 50%;
+  font-size: 1.5em;
+  border: 5px solid white;
+  margin-top: -1.5em;
+  float: right;
+  margin-right: 1em;
+  cursor: pointer;
+
+  &:hover {
+    background: $strong-red;
+  }
+}
+
+.modal__header {
+  text-align: center;
+  background-color: $ligt-red;
+  color: white;
+  padding: 1% 1% 5% 5%;
+
+  h4 {
+    margin: 1.5em 1em 0 1em;
+  }
+}
+
+.modal__content {
+  padding: 5%;
+
+  .modal__input {
+    width: 100%;
+    outline: none;
+
+    &:focus + .modal__select {
+      display: block;
+    }
+  }
+
+  .modal__select {
+    list-style: none;
+    background-color: #f6f6f6;
+    border: 1px solid #ddd;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: none;
+    max-height: 200px;
+    overflow-y: scroll;
+
+    &:hover {
+      display: block;
+    }
+
+    .select__assigned {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: #cccccd;
+    }
+
+    li {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #dedee0;
+      }
+    }
+
+    .employee-list__item {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .employee-list__item__name {
+        align-self: center;
+      }
+      .employee-list__photo {
+        height: 40px;
+        width: 40px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 5px;
+        box-shadow: $light-box-shadow;
+      }
+    }
+  }
+}

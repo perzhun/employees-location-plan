@@ -1,0 +1,80 @@
+@import "./base/variables";
+
+.employee-modal__header {
+  display: flex;
+  background-color: $ligt-red;
+  color: white;
+  padding: 8%;
+  text-align: center;
+  justify-content: space-around;
+
+  .employee-modal__headings {
+    flex-grow: 2;
+
+    h4 {
+      font-size: 1.5em;
+      margin-top: 0;
+    }
+
+    h5 {
+      font-size: 1em;
+      margin-top: 0.5em;
+    }
+
+    h4,
+    h5 {
+      margin-bottom: 0;
+    }
+  }
+
+  .employee-modal__img {
+    align-self: center;
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: $light-box-shadow;
+  }
+}
+
+.employee-header__close-modal {
+  color: white;
+  background: $strong-red;
+  padding: 2%;
+  border-radius: 50%;
+  font-size: 1.5em;
+  border: 5px solid white;
+  margin-top: -1em;
+  float: right;
+  margin-right: 1em;
+  cursor: pointer;
+
+  &:hover {
+    background: $strong-red;
+  }
+}
+
+.employee-modal__content {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+
+  p {
+    align-self: center;
+    color: $dark-grey;
+    vertical-align: middle;
+    padding: 0;
+    font-weight: 400;
+    width: 70%;
+    max-height: 80%;
+    margin: 0 auto;
+    text-align: justify;
+    letter-spacing: 2px;
+    font-size: 1em;
+    line-height: 24px;
+    word-break: break-all;
+  }
+}
