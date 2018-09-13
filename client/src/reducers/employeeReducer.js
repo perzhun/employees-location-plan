@@ -1,8 +1,6 @@
-import dummyData from '../dummyData';
 import {
   FETCH_EMPLOYEES_BEGIN,
   FETCH_EMPLOYEES_SUCCESS,
-  FETCH_EMPLOYEES_FAILURE,
 } from '../actions/employees';
 
 const employeeInitialState = {

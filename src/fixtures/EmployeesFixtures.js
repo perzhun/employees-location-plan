@@ -7,7 +7,6 @@ const fixtures = require("./EmployeesData");
 
 module.exports = {
   loadFixtures: () => {
-    console.log(typeof models);
     sequelize_fixtures.loadFixtures(fixtures, models).then(function() {
       console.log(
         "Fixtures have been loaded, check your database tables ;) !!!"
