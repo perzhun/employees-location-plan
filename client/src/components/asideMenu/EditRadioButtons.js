@@ -72,9 +72,11 @@ class RadioButtonsGroup extends React.Component {
                 <Radio
                   classes={{ root: classes.radio, checked: classes.checked }}
                   checked={
-                    this.props.settingsOptionEnabled === 'Grid settings'
-                      ? true
-                      : false
+                    this.props.settingsOptionEnabled === 'Grid settings' ? (
+                      true
+                    ) : (
+                      false
+                    )
                   }
                 />
               }
@@ -90,9 +92,12 @@ class RadioButtonsGroup extends React.Component {
                 <Radio
                   classes={{ root: classes.radio, checked: classes.checked }}
                   checked={
-                    this.props.settingsOptionEnabled === 'Work place settings'
-                      ? true
-                      : false
+                    this.props.settingsOptionEnabled ===
+                    'Work place settings' ? (
+                      true
+                    ) : (
+                      false
+                    )
                   }
                 />
               }
@@ -109,9 +114,11 @@ class RadioButtonsGroup extends React.Component {
                   classes={{ root: classes.radio, checked: classes.checked }}
                   checked={
                     this.props.settingsOptionEnabled ===
-                    'Employee location settings'
-                      ? true
-                      : false
+                    'Employee location settings' ? (
+                      true
+                    ) : (
+                      false
+                    )
                   }
                 />
               }
@@ -156,8 +163,5 @@ const mapDispatchToProps = dispatch => {
 
 export default compose(
   withStyles(styles, { name: 'RadioButtonsGroup' }),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
 )(RadioButtonsGroup);

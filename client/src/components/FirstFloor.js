@@ -7,7 +7,12 @@ import styled from 'styled-components';
 import Employee from './Employee';
 import SelectModal from './SelectModal';
 import EmployeeModal from './EmployeeModal';
-import { addWorkPlace, removeWorkPlace } from '../actions/mainGridRender';
+import {
+  getGrid,
+  setWorkPlaceFirst,
+  deleteWorkPlaceFirst,
+  getWorkPlaceArray,
+} from '../actions/apiCalls';
 
 /*
  first floor components , contains a plan for all the rooms inside .
@@ -17,6 +22,10 @@ import { addWorkPlace, removeWorkPlace } from '../actions/mainGridRender';
 Modal.defaultStyles.overlay.backgroundColor = 'none';
 
 class FirstFloor extends Component {
+  componentDidMount() {
+    this.props.getGrid('first');
+    this.props.getWorkPlaceArray('first');
+  }
   render() {
     const CustomGrid = styled.div`
       grid-template-rows: repeat(${this.props.gridRows}, 1fr);
@@ -37,8 +46,8 @@ class FirstFloor extends Component {
           onClick={() => {
             if (this.props.settingsOptionEnabled === 'Work place settings') {
               this.props.workPlace.indexOf(i) !== -1
-                ? this.props.removeWorkPlace(i)
-                : this.props.addWorkPlace(i);
+                ? this.props.deleteWorkPlaceFirst(i)
+                : this.props.setWorkPlaceFirst(i);
             }
           }}
         >
@@ -83,6 +92,10 @@ FirstFloor.propTypes = {
   searchedEmployee: PropTypes.number,
   addWorkPlace: PropTypes.func,
   removeWorkPlace: PropTypes.func,
+  getGrid: PropTypes.func,
+  setWorkPlaceFirst: PropTypes.func,
+  deleteWorkPlaceFirst: PropTypes.func,
+  getWorkPlaceArray: PropTypes.func,
 };
 
 const mapStateToProps = state => {
@@ -102,11 +115,17 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    removeWorkPlace: id => {
-      dispatch(removeWorkPlace(id));
+    getGrid: floor => {
+      dispatch(getGrid(floor));
     },
-    addWorkPlace: id => {
-      dispatch(addWorkPlace(id));
+    setWorkPlaceFirst: place => {
+      dispatch(setWorkPlaceFirst(place));
+    },
+    deleteWorkPlaceFirst: place => {
+      dispatch(deleteWorkPlaceFirst(place));
+    },
+    getWorkPlaceArray: floor => {
+      dispatch(getWorkPlaceArray(floor));
     },
   };
 };

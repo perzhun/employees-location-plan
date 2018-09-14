@@ -6,8 +6,8 @@ module.exports = {
       const grid = await Grid.findAll({
         where: { floor: req.query.floor }
       });
-      console.log(req.query);
-      res.send(grid);
+      let [destructGrid] = grid;
+      res.send(destructGrid);
     } catch (err) {
       res.sendStatus(400).send({
         error: "Error , grid not found"
@@ -30,6 +30,7 @@ module.exports = {
         { collumsAndRows: req.body.collumsAndRows },
         { where: { floor: req.params.floor } }
       );
+      console.log(req.body.collumsAndRows);
       res.send(updatedGrid);
     } catch (err) {
       res.sendStatus(400).send({

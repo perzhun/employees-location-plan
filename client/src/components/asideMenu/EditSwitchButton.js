@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -48,6 +49,16 @@ class CustomizedSwitches extends React.Component {
     if (!event.target.checked) {
       this.props.activateGrid(false);
       this.props.settingsOption('');
+      axios({
+        method: 'put',
+        url: `http://localhost:8081/updateGrid/${this.props.floor ===
+        'first floor'
+          ? 'first'
+          : 'second'}`,
+        data: {
+          collumsAndRows: this.props.collumsAndRows,
+        },
+      });
     }
   };
 
@@ -83,6 +94,15 @@ CustomizedSwitches.propTypes = {
   enableEditing: PropTypes.func,
   activateGrid: PropTypes.func,
   settingsOption: PropTypes.func,
+  collumsAndRows: PropTypes.number,
+  floor: PropTypes.string,
+};
+
+const mapStateToProps = state => {
+  return {
+    collumsAndRows: state.grid.gridCollums,
+    floor: state.render.render,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -101,8 +121,5 @@ const mapDispatchToProps = dispatch => {
 
 export default compose(
   withStyles(styles, { name: 'CustomizedSwitches' }),
-  connect(
-    null,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
 )(CustomizedSwitches);

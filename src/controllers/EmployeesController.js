@@ -9,7 +9,6 @@ module.exports = {
           error: "Error , employees not found"
         });
       }
-      console.log(employeeList);
       res.send(employeeList);
     } catch (err) {
       res.status(400).send({
