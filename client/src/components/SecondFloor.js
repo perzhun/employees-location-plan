@@ -7,9 +7,11 @@ import Employee from './Employee';
 import SelectModal from './SelectModal';
 import EmployeeModal from './EmployeeModal';
 import {
-  addWorkPlaceSecond,
-  removeWorkPlaceSecond,
-} from '../actions/mainGridRender';
+  getGrid,
+  setWorkPlaceSecond,
+  deleteWorkPlace,
+  getWorkPlaceArray,
+} from '../actions/apiCalls';
 
 /*
  second floor components , contains a plan for all the rooms inside .
@@ -19,6 +21,10 @@ import {
 Modal.defaultStyles.overlay.backgroundColor = 'none';
 
 class SecondFloor extends Component {
+  componentDidMount() {
+    this.props.getGrid('second');
+    this.props.getWorkPlaceArray('second');
+  }
   render() {
     const CustomGrid = styled.div`
       grid-template-rows: repeat(${this.props.gridRows}, 1fr);
@@ -39,8 +45,8 @@ class SecondFloor extends Component {
           onClick={() => {
             if (this.props.settingsOptionEnabled === 'Work place settings') {
               this.props.workPlace.indexOf(i) !== -1
-                ? this.props.removeWorkPlaceSecond(i)
-                : this.props.addWorkPlaceSecond(i);
+                ? this.props.deleteWorkPlace(i, 'second')
+                : this.props.setWorkPlaceSecond(i);
             }
           }}
         >
@@ -48,9 +54,11 @@ class SecondFloor extends Component {
             <div
               className={
                 (this.props.selectedOpened && this.props.cellId === i) ||
-                this.props.searchedEmployee === i
-                  ? 'grid-cell--selected'
-                  : 'grid-cell--active'
+                this.props.searchedEmployee === i ? (
+                  'grid-cell--selected'
+                ) : (
+                  'grid-cell--active'
+                )
               }
             >
               <Employee employeeKey={i} />
@@ -83,6 +91,10 @@ SecondFloor.propTypes = {
   searchedEmployee: PropTypes.number,
   addWorkPlaceSecond: PropTypes.func,
   removeWorkPlaceSecond: PropTypes.func,
+  getGrid: PropTypes.func,
+  setWorkPlaceSecond: PropTypes.func,
+  deleteWorkPlace: PropTypes.func,
+  getWorkPlaceArray: PropTypes.func,
 };
 
 const mapStateToProps = state => {
@@ -102,16 +114,19 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    removeWorkPlaceSecond: id => {
-      dispatch(removeWorkPlaceSecond(id));
+    getGrid: floor => {
+      dispatch(getGrid(floor));
     },
-    addWorkPlaceSecond: id => {
-      dispatch(addWorkPlaceSecond(id));
+    setWorkPlaceSecond: place => {
+      dispatch(setWorkPlaceSecond(place));
+    },
+    deleteWorkPlace: (cell, floor) => {
+      dispatch(deleteWorkPlace(cell, floor));
+    },
+    getWorkPlaceArray: floor => {
+      dispatch(getWorkPlaceArray(floor));
     },
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SecondFloor);
+export default connect(mapStateToProps, mapDispatchToProps)(SecondFloor);

@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { addWorkPlace, removeWorkPlace } from '../actions/mainGridRender';
+import {
+  addWorkPlace,
+  removeWorkPlace,
+  removeWorkPlaceSecond,
+  addWorkPlaceSecond,
+} from '../actions/mainGridRender';
 
 export const getGrid = floor => dispatch => {
   dispatch(fetchGridBegin());
@@ -20,11 +25,27 @@ export const setWorkPlaceFirst = payload => dispatch => {
   });
 };
 
-export const deleteWorkPlaceFirst = payload => dispatch => {
-  dispatch(removeWorkPlace(payload));
+export const setWorkPlaceSecond = payload => dispatch => {
+  dispatch(addWorkPlaceSecond(payload));
+  axios({
+    method: 'post',
+    url: 'http://localhost:8081/createWorkPlace',
+    data: {
+      cell: payload,
+      floor: 'second',
+    },
+  });
+};
+
+export const deleteWorkPlace = (cell, floor) => dispatch => {
+  if (floor === 'first') {
+    dispatch(removeWorkPlace(cell));
+  } else {
+    dispatch(removeWorkPlaceSecond(cell));
+  }
   axios({
     method: 'delete',
-    url: `http://localhost:8081/deleteWorkPlace?cell=${payload}`,
+    url: `http://localhost:8081/deleteWorkPlace?cell=${cell}&floor=${floor}`,
   });
 };
 

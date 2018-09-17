@@ -12,7 +12,6 @@ const gridDataInitialState = {
   gridRows: 8,
   gridEdit: false,
   workPlace: [],
-  wokPlaceTest: [],
   secondFloorWorkPlace: [],
   modalProps: {
     selectedOpened: false,

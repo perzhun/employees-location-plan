@@ -26,8 +26,8 @@ module.exports = {
   },
   async deleteWorkPlace(req, res) {
     try {
-      const workPlace = await WorkPlace.destroy({
-        where: { cell: req.query.cell }
+      await WorkPlace.destroy({
+        where: { cell: req.query.cell, floor: req.query.floor }
       });
       //let [destructWorkdPlace] = workPlace;
       res.send("work place deleted");

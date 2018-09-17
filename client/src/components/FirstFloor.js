@@ -10,7 +10,7 @@ import EmployeeModal from './EmployeeModal';
 import {
   getGrid,
   setWorkPlaceFirst,
-  deleteWorkPlaceFirst,
+  deleteWorkPlace,
   getWorkPlaceArray,
 } from '../actions/apiCalls';
 
@@ -46,7 +46,7 @@ class FirstFloor extends Component {
           onClick={() => {
             if (this.props.settingsOptionEnabled === 'Work place settings') {
               this.props.workPlace.indexOf(i) !== -1
-                ? this.props.deleteWorkPlaceFirst(i)
+                ? this.props.deleteWorkPlace(i, 'first')
                 : this.props.setWorkPlaceFirst(i);
             }
           }}
@@ -94,7 +94,7 @@ FirstFloor.propTypes = {
   removeWorkPlace: PropTypes.func,
   getGrid: PropTypes.func,
   setWorkPlaceFirst: PropTypes.func,
-  deleteWorkPlaceFirst: PropTypes.func,
+  deleteWorkPlace: PropTypes.func,
   getWorkPlaceArray: PropTypes.func,
 };
 
@@ -121,8 +121,8 @@ const mapDispatchToProps = dispatch => {
     setWorkPlaceFirst: place => {
       dispatch(setWorkPlaceFirst(place));
     },
-    deleteWorkPlaceFirst: place => {
-      dispatch(deleteWorkPlaceFirst(place));
+    deleteWorkPlace: (cell, floor) => {
+      dispatch(deleteWorkPlace(cell, floor));
     },
     getWorkPlaceArray: floor => {
       dispatch(getWorkPlaceArray(floor));
