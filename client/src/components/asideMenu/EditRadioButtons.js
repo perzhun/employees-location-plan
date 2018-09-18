@@ -24,7 +24,7 @@ const styles = theme => ({
   },
   radio: {
     '&$checked': {
-      color: '#9c4dcc',
+      color: '#6f74dd',
     },
   },
   checked: {},

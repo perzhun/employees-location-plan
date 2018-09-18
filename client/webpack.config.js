@@ -61,4 +61,11 @@ module.exports = {
     new CopyWebpackPlugin([{ from: 'src/img', to: 'img' }]),
   ],
   devtool: 'source-map',
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8081',
+      },
+    },
+  },
 };

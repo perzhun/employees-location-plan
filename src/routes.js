@@ -4,20 +4,23 @@ const WorkPlaceController = require("./controllers/WorkPlaceController");
 const ChosenEmployeesController = require("./controllers/ChosenEmployeesController");
 
 module.exports = app => {
-  app.get("/employees", EmployeeController.employees);
-  app.post("/createGrid", GridController.createGrid);
-  app.get("/grid", GridController.grid);
-  app.put("/updateGrid/:floor", GridController.updateGrid);
-  app.post("/createWorkPlace", WorkPlaceController.createWorkPlace);
-  app.get("/getWorkPlace", WorkPlaceController.getWorkPlace);
-  app.delete("/deleteWorkPlace", WorkPlaceController.deleteWorkPlace);
+  app.get("/api/employees", EmployeeController.employees);
+  app.post("/api/createGrid", GridController.createGrid);
+  app.get("/api/grid", GridController.grid);
+  app.put("/api/updateGrid/:floor", GridController.updateGrid);
+  app.post("/api/createWorkPlace", WorkPlaceController.createWorkPlace);
+  app.get("/api/getWorkPlace", WorkPlaceController.getWorkPlace);
+  app.delete("/api/deleteWorkPlace", WorkPlaceController.deleteWorkPlace);
   app.post(
-    "/createChosenEmployee",
+    "/api/createChosenEmployee",
     ChosenEmployeesController.createChosenEmployee
   );
-  app.get("/getChosenEmployee", ChosenEmployeesController.getChosenEmployee);
+  app.get(
+    "/api/getChosenEmployee",
+    ChosenEmployeesController.getChosenEmployee
+  );
   app.delete(
-    "/deleteChosenEmployee",
+    "/api/deleteChosenEmployee",
     ChosenEmployeesController.deleteChosenEmployee
   );
 };

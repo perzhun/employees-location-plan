@@ -18,10 +18,22 @@ class EmployeeModal extends Component {
   };
 
   render() {
+    let modalLeft;
+    let modalTop;
+    let modalTransform;
+    if ((window.innerWidth || window.innerHeight) < 600) {
+      modalLeft = '50%';
+      modalTop = '50%';
+      modalTransform = 'translate(-50%, -50%)';
+    } else {
+      modalLeft = this.props.selectX + 10;
+      modalTop = this.props.selectY;
+      modalTransform = 'none';
+    }
     const customModal = {
       content: {
-        left: this.props.selectX + 10,
-        top: this.props.selectY,
+        left: modalLeft,
+        top: modalTop,
         width: '300px',
         right: 'none',
         bottom: 'none',
@@ -29,6 +41,7 @@ class EmployeeModal extends Component {
         position: 'absolute',
         padding: 0,
         boxShadow: '3px 3px 3px 3px #888888',
+        transform: modalTransform,
       },
     };
     return (

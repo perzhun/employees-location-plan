@@ -9,7 +9,7 @@ import {
 export const getGrid = floor => dispatch => {
   dispatch(fetchGridBegin());
   axios
-    .get(`/grid?floor=${floor}`)
+    .get(`/api/grid?floor=${floor}`)
     .then(res => dispatch(fetchGridSuccess(res.data)));
 };
 
@@ -17,7 +17,7 @@ export const setWorkPlaceFirst = payload => dispatch => {
   dispatch(addWorkPlace(payload));
   axios({
     method: 'post',
-    url: '/createWorkPlace',
+    url: '/api/createWorkPlace',
     data: {
       cell: payload,
       floor: 'first',
@@ -29,7 +29,7 @@ export const setWorkPlaceSecond = payload => dispatch => {
   dispatch(addWorkPlaceSecond(payload));
   axios({
     method: 'post',
-    url: '/createWorkPlace',
+    url: '/api/createWorkPlace',
     data: {
       cell: payload,
       floor: 'second',
@@ -45,14 +45,14 @@ export const deleteWorkPlace = (cell, floor) => dispatch => {
   }
   axios({
     method: 'delete',
-    url: `/deleteWorkPlace?cell=${cell}&floor=${floor}`,
+    url: `/api/deleteWorkPlace?cell=${cell}&floor=${floor}`,
   });
 };
 
 export const getWorkPlaceArray = floor => dispatch => {
   dispatch(fetchWorkPlaceBegin());
   axios
-    .get(`/getWorkPlace?floor=${floor}`)
+    .get(`/api/getWorkPlace?floor=${floor}`)
     .then(res =>
       dispatch(fetchWorkPlaceSuccess(res.data.map(place => place.cell), floor)),
     );

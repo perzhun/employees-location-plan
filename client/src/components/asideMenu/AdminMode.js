@@ -16,9 +16,9 @@ const styles = () => ({
   colorSwitchBase: {
     color: '#D7ECCA',
     '&$colorChecked': {
-      color: '#9c4dcc',
+      color: '#6f74dd',
       '& + $colorBar': {
-        backgroundColor: '#38006b',
+        backgroundColor: '#00227b',
       },
     },
   },
@@ -91,8 +91,5 @@ const mapDispatchToProps = dispatch => {
 
 export default compose(
   withStyles(styles, { name: 'AdminMode' }),
-  connect(
-    null,
-    mapDispatchToProps,
-  ),
+  connect(null, mapDispatchToProps),
 )(AdminMode);

@@ -41,18 +41,24 @@ class SelectModal extends Component {
   };
 
   render() {
-    let modalWidth;
+    let modalLeft;
+    let modalTop;
+    let modalTransform;
     if ((window.innerWidth || window.innerHeight) < 600) {
-      modalWidth = '200px';
+      modalLeft = '50%';
+      modalTop = '50%';
+      modalTransform = 'translate(-50%, -50%)';
     } else {
-      modalWidth = '300px';
+      modalLeft = this.props.selectX + 10;
+      modalTop = this.props.selectY;
+      modalTransform = 'none';
     }
 
     const customModal = {
       content: {
-        left: this.props.selectX + 10,
-        top: this.props.selectY,
-        width: modalWidth,
+        left: modalLeft,
+        top: modalTop,
+        width: '300px',
         right: 'none',
         bottom: 'none',
         overflow: 'hidden',
@@ -60,6 +66,7 @@ class SelectModal extends Component {
         padding: 0,
         boxShadow: '3px 3px 3px 3px #888888',
         zIndex: 3,
+        transform: modalTransform,
       },
     };
     let employeeList;

@@ -16,9 +16,9 @@ const styles = () => ({
   colorSwitchBase: {
     color: '#D7ECCA',
     '&$colorChecked': {
-      color: '#9c4dcc',
+      color: '#6f74dd',
       '& + $colorBar': {
-        backgroundColor: '#38006b',
+        backgroundColor: '#00227b',
       },
     },
   },
@@ -51,8 +51,7 @@ class CustomizedSwitches extends React.Component {
       this.props.settingsOption('');
       axios({
         method: 'put',
-        url: `http://localhost:8081/updateGrid/${this.props.floor ===
-        'first floor'
+        url: `/api/updateGrid/${this.props.floor === 'first floor'
           ? 'first'
           : 'second'}`,
         data: {
