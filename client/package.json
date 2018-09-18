@@ -6,9 +6,7 @@
   "scripts": {
     "test": "test",
     "build": "webpack-dev-server --mode=development --open --hot",
-    "build:prod": "webpack -p",
-    "start": "node server.js",
-    "heroku-postbuild": "webpack -p"
+    "build:prod": "webpack -p"
   },
   "author": "hachem el jedaaoui",
   "license": "ISC",
