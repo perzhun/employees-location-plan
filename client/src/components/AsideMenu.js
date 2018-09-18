@@ -16,7 +16,7 @@ import { floorRender, searchEmployee } from '../actions/mainGridRender';
 
 class AsideMenu extends Component {
   state = {
-    inputText: '8',
+    inputText: '',
   };
 
   HandleSearch = e => {
@@ -47,7 +47,7 @@ class AsideMenu extends Component {
                     el => el.name === person.name,
                   );
                   this.handleEmployeeClick(
-                    matchedEmployee.id,
+                    matchedEmployee.cellId,
                     matchedEmployee.floor,
                   );
                 }}
@@ -134,7 +134,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(AsideMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(AsideMenu);

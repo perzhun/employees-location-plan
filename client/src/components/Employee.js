@@ -84,6 +84,7 @@ class Employee extends Component {
                     employeeInfo: personObject,
                     selectX: selectX,
                     selectY: selectY,
+                    modalCellId: this.props.employeeKey,
                   })
                 : null;
             }}

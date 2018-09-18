@@ -14,6 +14,7 @@ class EmployeeModal extends Component {
       employeeInfo: {},
       selectX: 0,
       selectY: 0,
+      modalCellId: 0,
     });
   };
 

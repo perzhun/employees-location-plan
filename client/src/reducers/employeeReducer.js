@@ -14,6 +14,7 @@ const employeeInitialState = {
   searchedEmployee: null,
   employeeModalProps: {
     modalOpened: false,
+    modalCellId: 0,
     employeeInfo: {},
     selectX: 0,
     selectY: 0,

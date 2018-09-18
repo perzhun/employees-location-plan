@@ -55,7 +55,8 @@ class FirstFloor extends Component {
             <div
               className={
                 (this.props.selectedOpened && this.props.cellId === i) ||
-                this.props.searchedEmployee === i ? (
+                this.props.searchedEmployee === i ||
+                (this.props.modalOpened && this.props.modalCellId === i) ? (
                   'grid-cell--selected'
                 ) : (
                   'grid-cell--active'
@@ -96,6 +97,8 @@ FirstFloor.propTypes = {
   setWorkPlaceFirst: PropTypes.func,
   deleteWorkPlace: PropTypes.func,
   getWorkPlaceArray: PropTypes.func,
+  modalCellId: PropTypes.number,
+  modalOpened: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
@@ -105,6 +108,8 @@ const mapStateToProps = state => {
     gridEdit: state.grid.gridEdit,
     workPlace: state.grid.workPlace,
     selectedOpened: state.grid.modalProps.selectedOpened,
+    modalOpened: state.employees.employeeModalProps.modalOpened,
+    modalCellId: state.employees.employeeModalProps.modalCellId,
     selectX: state.grid.modalProps.selectX,
     selectY: state.grid.modalProps.selectY,
     cellId: state.grid.modalProps.cellId,
