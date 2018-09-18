@@ -1,11 +1,14 @@
 import {
   FETCH_EMPLOYEES_BEGIN,
   FETCH_EMPLOYEES_SUCCESS,
+  GET_CHOSEN_EMPLOYEES_BEGIN,
+  GET_CHOSEN_EMPLOYEES_SUCCESS,
 } from '../actions/employees';
 
 const employeeInitialState = {
   employees: [],
   loading: false,
+  chosenLoading: false,
   error: null,
   chosenEmployee: [],
   searchedEmployee: null,
@@ -30,6 +33,17 @@ export default (state = employeeInitialState, action) => {
         ...state,
         loading: false,
         employees: action.payload.employees,
+      };
+    case GET_CHOSEN_EMPLOYEES_BEGIN:
+      return {
+        ...state,
+        chosenLoading: true,
+      };
+    case GET_CHOSEN_EMPLOYEES_SUCCESS:
+      return {
+        ...state,
+        chosenLoading: false,
+        chosenEmployee: action.payload.chosenEmployees,
       };
     case 'CHOSE_EMPLOYEE':
       return {

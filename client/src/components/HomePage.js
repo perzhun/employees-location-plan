@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AsideMenu from './AsideMenu';
 import MainGrid from './MainGrid';
-import { fetchEmployees } from '../actions/employees';
+import { fetchEmployees, getChosenEmployees } from '../actions/employees';
 
 // the app's home page . contains a togglable menu to the side and a main grid in the middle
 
 class HomePage extends Component {
   componentDidMount() {
     this.props.dispatch(fetchEmployees());
+    this.props.dispatch(getChosenEmployees());
   }
   render() {
     return (

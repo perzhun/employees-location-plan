@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import Clear from '@material-ui/icons/Clear';
+import { openSelected } from '../actions/mainGridRender';
 import {
-  openSelected,
-  choseEmployee,
-  deleteEmployee,
-} from '../actions/mainGridRender';
+  createChosenEmployee,
+  deleteChosenEmployee,
+} from '../actions/employees';
 
 Modal.defaultStyles.overlay.backgroundColor = 'none';
 
@@ -28,16 +28,16 @@ class SelectModal extends Component {
     });
   };
   handleSelectClick = name => {
-    this.props.choseEmployee({
+    this.props.createChosenEmployee({
       name: name,
-      id: this.props.cellId,
+      cellId: this.props.cellId,
       floor: this.props.floor,
     });
     this.handleCloseModal();
   };
 
   handleEmployeeDelete = name => {
-    this.props.deleteEmployee(name);
+    this.props.deleteChosenEmployee(name);
   };
 
   render() {
@@ -66,7 +66,7 @@ class SelectModal extends Component {
     let filterById = [];
     if (this.props.chosenEmployee.length > 0) {
       filterById = this.props.chosenEmployee.filter(
-        el => el.id === this.props.cellId && el.floor === this.props.floor,
+        el => el.cellId === this.props.cellId && el.floor === this.props.floor,
       );
     }
     let filteredPerson;
@@ -163,6 +163,8 @@ SelectModal.propTypes = {
   deleteEmployee: PropTypes.func,
   openSelected: PropTypes.func,
   choseEmployee: PropTypes.func,
+  createChosenEmployee: PropTypes.func,
+  deleteChosenEmployee: PropTypes.func,
 };
 
 const mapStateToProps = state => {
@@ -181,14 +183,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteEmployee: name => {
-      dispatch(deleteEmployee(name));
-    },
     openSelected: payload => {
       dispatch(openSelected(payload));
     },
-    choseEmployee: payload => {
-      dispatch(choseEmployee(payload));
+    createChosenEmployee: payload => {
+      dispatch(createChosenEmployee(payload));
+    },
+    deleteChosenEmployee: name => {
+      dispatch(deleteChosenEmployee(name));
     },
   };
 };

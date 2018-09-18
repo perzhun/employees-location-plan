@@ -6,7 +6,8 @@ import { openSelected, openEmployeeModal } from '../actions/mainGridRender';
 class Employee extends Component {
   render() {
     let chosenPerson = this.props.chosenEmployee.filter(
-      el => el.id === this.props.employeeKey && el.floor === this.props.floor,
+      el =>
+        el.cellId === this.props.employeeKey && el.floor === this.props.floor,
     );
     let [chosenPersonObject] = chosenPerson;
     let employeeArray = [];
@@ -146,7 +147,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Employee);
+export default connect(mapStateToProps, mapDispatchToProps)(Employee);

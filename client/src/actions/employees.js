@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { choseEmployee, deleteEmployee } from '../actions/mainGridRender';
 
 export const fetchEmployees = () => dispatch => {
   dispatch(fetchEmployeesBegin());
@@ -19,4 +20,44 @@ export const fetchEmployeesBegin = () => ({
 export const fetchEmployeesSuccess = employees => ({
   type: FETCH_EMPLOYEES_SUCCESS,
   payload: { employees },
+});
+
+export const createChosenEmployee = payload => dispatch => {
+  dispatch(choseEmployee(payload));
+  axios({
+    method: 'post',
+    url: 'http://localhost:8081/createChosenEmployee',
+    data: {
+      name: payload.name,
+      cellId: payload.cellId,
+      floor: payload.floor,
+    },
+  });
+};
+
+export const deleteChosenEmployee = name => dispatch => {
+  dispatch(deleteEmployee(name));
+  axios({
+    method: 'delete',
+    url: `http://localhost:8081/deleteChosenEmployee?name=${name}`,
+  });
+};
+
+export const getChosenEmployees = () => dispatch => {
+  dispatch(getChosenEmployeesBegin());
+  axios
+    .get(`http://localhost:8081/getChosenEmployee`)
+    .then(res => dispatch(getChosenEmployeesSuccess(res.data)));
+};
+
+export const GET_CHOSEN_EMPLOYEES_BEGIN = 'GET_CHOSEN_EMPLOYEES_BEGIN';
+export const GET_CHOSEN_EMPLOYEES_SUCCESS = 'GET_CHOSEN_EMPLOYEES_SUCCESS';
+
+export const getChosenEmployeesBegin = () => ({
+  type: GET_CHOSEN_EMPLOYEES_BEGIN,
+});
+
+export const getChosenEmployeesSuccess = chosenEmployees => ({
+  type: GET_CHOSEN_EMPLOYEES_SUCCESS,
+  payload: { chosenEmployees },
 });

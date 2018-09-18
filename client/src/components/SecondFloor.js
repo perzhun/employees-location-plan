@@ -12,7 +12,6 @@ import {
   deleteWorkPlace,
   getWorkPlaceArray,
 } from '../actions/apiCalls';
-
 /*
  second floor components , contains a plan for all the rooms inside .
   the rooms are clickable and will dispatch an action to render the room .
