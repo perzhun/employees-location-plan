@@ -4,7 +4,7 @@ import { choseEmployee, deleteEmployee } from '../actions/mainGridRender';
 export const fetchEmployees = () => dispatch => {
   dispatch(fetchEmployeesBegin());
   axios
-    .get('http://localhost:8081/employees')
+    .get('/employees')
     .then(res => dispatch(fetchEmployeesSuccess(res.data)));
 };
 
@@ -26,7 +26,7 @@ export const createChosenEmployee = payload => dispatch => {
   dispatch(choseEmployee(payload));
   axios({
     method: 'post',
-    url: 'http://localhost:8081/createChosenEmployee',
+    url: '/createChosenEmployee',
     data: {
       name: payload.name,
       cellId: payload.cellId,
@@ -39,14 +39,14 @@ export const deleteChosenEmployee = name => dispatch => {
   dispatch(deleteEmployee(name));
   axios({
     method: 'delete',
-    url: `http://localhost:8081/deleteChosenEmployee?name=${name}`,
+    url: `/deleteChosenEmployee?name=${name}`,
   });
 };
 
 export const getChosenEmployees = () => dispatch => {
   dispatch(getChosenEmployeesBegin());
   axios
-    .get(`http://localhost:8081/getChosenEmployee`)
+    .get(`/getChosenEmployee`)
     .then(res => dispatch(getChosenEmployeesSuccess(res.data)));
 };
 
